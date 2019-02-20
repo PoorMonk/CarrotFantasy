@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameFactory : MonoBehaviour {
+public class GameFactory : BaseFactory {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public GameFactory()
+    {
+        m_loadPath += "Game/";
+    }
 }

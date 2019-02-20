@@ -27,4 +27,44 @@ public class GameManager : MonoBehaviour {
 		m_audioSourceManager = new AudioSourceManager();
 		m_uiManager = new UIManager();
 	}
+
+    /// <summary>
+    /// 为没有继承MonoBehaviour的类生成实例对象
+    /// </summary>
+    /// <param name="item">要实例的对象</param>
+    /// <returns></returns>
+    public GameObject CreateItem(GameObject item)
+    {
+        return Instantiate(item);
+    }
+
+    // 获取Sprite资源
+    public Sprite GetSprite(string spritePath)
+    {
+        return m_factoryManager.m_spriteFactory.GetSingleResource(spritePath);
+    }
+
+    // 获取AudioClip资源
+    public AudioClip GetAudioClip(string audioClipPath)
+    {
+        return m_factoryManager.m_audioClipFactory.GetSingleResource(audioClipPath);
+    }
+
+    // 获取动画控制器资源
+    public RuntimeAnimatorController GetRuntimeAnimatorController(string animatorPath)
+    {
+        return m_factoryManager.m_runtimeAnimatorControllerFactory.GetSingleResource(animatorPath);
+    }
+
+    // 获取游戏物体资源
+    public GameObject GetGameObjectResource(FactoryType factoryType, string ObjectPath)
+    {
+        return m_factoryManager.m_factoryDict[factoryType].GetItem(ObjectPath);
+    }
+
+    // 将游戏物体放回对象池
+    public void PushGameObjectToFactory(FactoryType factoryType, string ObjectPath, GameObject itemGo)
+    {
+        m_factoryManager.m_factoryDict[factoryType].PushItem(ObjectPath, itemGo);
+    }
 }

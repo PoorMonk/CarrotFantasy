@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RuntimeAnimatorFactory : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+public class RuntimeAnimatorFactory : IBaseResourceFactory<RuntimeAnimatorController>
+{
+    public RuntimeAnimatorController GetSingleResource(string resourcePath)
+    {
+        throw new System.NotImplementedException();
+    }
 }

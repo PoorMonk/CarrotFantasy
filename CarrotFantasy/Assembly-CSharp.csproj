@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Factory\GameFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\IBaseFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\IBaseResourceFactory.cs" />
+    <Compile Include="Assets\Scripts\Factory\RuntimeAnimatorControllerFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\RuntimeAnimatorFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\SpriteFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\UIFactory.cs" />
@@ -92,6 +93,21 @@
     <Compile Include="Assets\Scripts\SlideScrollView.cs" />
     <Compile Include="Assets\Scripts\Test\DoTweenTest.cs" />
     <Compile Include="Assets\Scripts\Test\State.cs" />
+    <Compile Include="Assets\Scripts\UI\UIFacade.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\BasePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\BossModelPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\GameBossOptionPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\GameLoadPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\GameNormalBigLevelPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\GameNormalLevelPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\GameNormalOptionPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\HelpPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\IBasePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\MainPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\MonsterNestPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\NormalModelPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\SetPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPanel\StartLoadPanel.cs" />
     <None Include="Assets\DOTween\readme.txt" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/UnityLearning/UnityProject/CarrotFantasy/CarrotFantasy/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

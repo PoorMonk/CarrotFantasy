@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIPanelFactory : MonoBehaviour {
+public class UIPanelFactory : BaseFactory {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public UIPanelFactory()
+    {
+        m_loadPath += "UIPanel/";
+    }
 }

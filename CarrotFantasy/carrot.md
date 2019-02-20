@@ -197,3 +197,7 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 			m_currentContentLocalPos += new Vector3(moveDistance, 0, 0);
 		}
 	}
+
+**UI显示问题：**
+
+将UIPanel做成预制体，通过工厂方法创建后，先是会生成在Hierarchy面板下，设置parent后才会显示在Canvas下，但是这样操作会有问题，UI显示大小比例都不对。解决方法：先将prefab拖到Canvas下，将缩放锚点由Stretch改为Center，然后点击Apply；再通过工厂创建设置到Canvas下后，修改其LocalPosition和Scale。

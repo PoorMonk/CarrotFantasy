@@ -4,6 +4,5 @@ using UnityEngine;
 
 public interface IBaseResourceFactory<T>
 {
-    T GetSingleResource(string resourcePath);
-	
+    T GetSingleResource(string resourcePath);	
 }
