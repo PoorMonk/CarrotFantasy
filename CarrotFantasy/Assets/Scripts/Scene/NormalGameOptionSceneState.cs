@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class NormalGameOptionSceneState : BaseSceneState {
 
-	
-	
+
+    public NormalGameOptionSceneState(UIFacade uiFacade) : base(uiFacade)
+    {
+
+    }
 }

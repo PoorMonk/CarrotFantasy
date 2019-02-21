@@ -1193,6 +1193,7 @@ GameObject:
   - component: {fileID: 224229404338858130}
   - component: {fileID: 222940016154022182}
   - component: {fileID: 114081416580151912}
+  - component: {fileID: 114641797160682534}
   m_Layer: 5
   m_Name: HelpPanel
   m_TagString: Untagged
@@ -2956,6 +2957,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114641797160682534
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1898354154763212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df67742706e6941469d03c1c9fb4ee20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114658803933487154
 MonoBehaviour:
   m_ObjectHideFlags: 1

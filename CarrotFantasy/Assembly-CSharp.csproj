@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Disc\Consts.cs" />
     <Compile Include="Assets\Scripts\Factory\AudioClipFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\BaseFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\FactoryType.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\SlideScrollView.cs" />
     <Compile Include="Assets\Scripts\Test\DoTweenTest.cs" />
     <Compile Include="Assets\Scripts\Test\State.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\UI\UIFacade.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BasePanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BossModelPanel.cs" />

@@ -31,6 +31,8 @@ public class UIFacade
         m_audioSourceManager = m_gameManager.m_audioSourceManager;
         m_playerManager = m_gameManager.m_playerManager;
         m_uiManager = uiManager;
+
+        InitMask();
     }
 
     public void InitMask()
@@ -49,6 +51,7 @@ public class UIFacade
 
     public void ShowMask()
     {
+        m_mask.transform.SetSiblingIndex(10); // 值越大越后渲染
         Tween t = DOTween.To(() => m_maskImg.color, toColor => m_maskImg.color = toColor, new Color(0, 0, 0, 1), 2f);
         t.OnComplete(ExitSceneComplelte);
     }
@@ -62,7 +65,8 @@ public class UIFacade
 
     public void HideMask()
     {
-        DOTween.To(() => m_maskImg.color, toColor => m_maskImg.color = toColor, new Color(0, 0, 0, 0), 1f);
+        m_mask.transform.SetSiblingIndex(10); // 再设置一次防止新加的UI后渲染
+        DOTween.To(() => m_maskImg.color, toColor => m_maskImg.color = toColor, new Color(0, 0, 0, 0), 2f);
     }
 
     public void AddPanelToDict(string uiPanelPath)
@@ -137,5 +141,16 @@ public class UIFacade
     public void PushGameObjectToFactory(FactoryType factoryType, string ObjectPath, GameObject itemGo)
     {
         m_gameManager.PushGameObjectToFactory(factoryType, ObjectPath, itemGo);
+    }
+
+    // 开关音乐
+    public void CloseOrOpenBGMusic()
+    {
+        m_audioSourceManager.CloseOrOpenBGMusic();
+    }
+
+    public void CloseOrOpenEffectMusic()
+    {
+        m_audioSourceManager.CloseOrOpenEffectMusic();
     }
 }

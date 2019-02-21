@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
 		m_factoryManager = new FactoryManager();
 		m_audioSourceManager = new AudioSourceManager();
 		m_uiManager = new UIManager();
+        m_uiManager.m_uiFacade.currentSceneState.EnterScene();
 	}
 
     /// <summary>

@@ -193,6 +193,7 @@ GameObject:
   - component: {fileID: 224830306538858046}
   - component: {fileID: 222819891668959406}
   - component: {fileID: 114164081275768452}
+  - component: {fileID: 114256956212282408}
   m_Layer: 5
   m_Name: MonsterNestPanel
   m_TagString: Untagged
@@ -540,6 +541,17 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!114 &114256956212282408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391679147849444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66332328e2be4f48a7f4f88b32af264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114298500190220068
 MonoBehaviour:
   m_ObjectHideFlags: 1
