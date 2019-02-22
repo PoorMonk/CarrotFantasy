@@ -12,7 +12,7 @@ public class UIFacade
     private UIManager m_uiManager;
     private GameManager m_gameManager;
     private AudioSourceManager m_audioSourceManager;
-    private PlayerManager m_playerManager;
+    public PlayerManager m_playerManager;
 
     // UI面板
     public Dictionary<string, IBasePanel> currentScenePanelDict = new Dictionary<string, IBasePanel>();

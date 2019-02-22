@@ -28,10 +28,13 @@ public class MainPanel : BasePanel {
         mainPanelTween[1] = transform.DOLocalMoveX(-1920, 0.5f);
         mainPanelTween[1].SetAutoKill(false);
         mainPanelTween[1].Pause();
+
+        PlayUITween();
     }
 
     public override void EnterPanel()
     {
+        transform.SetSiblingIndex(8); // 设置渲染层级
         m_carrotAnimator.Play("CarrotGrow");
         if (m_exitTween != null)
         {
@@ -53,7 +56,7 @@ public class MainPanel : BasePanel {
 
     private void PlayUITween()
     {
-        m_monsterTrans.DOLocalMoveY(550, 2f).SetLoops(-1, LoopType.Yoyo);
+        m_monsterTrans.DOLocalMoveY(550, 1.5f).SetLoops(-1, LoopType.Yoyo);
         m_cloudTrans.DOLocalMoveX(1200, 8f).SetLoops(-1, LoopType.Restart);
     }
 
@@ -79,12 +82,14 @@ public class MainPanel : BasePanel {
     {
         m_exitTween = mainPanelTween[0];
         m_uiFacade.currentScenePanelDict[StringManager.SetPanel].EnterPanel();
+        ExitPanel();
     }
 
     public void MoveToLeft()
     {
         m_exitTween = mainPanelTween[1];
         m_uiFacade.currentScenePanelDict[StringManager.HelpPanel].EnterPanel();
+        ExitPanel();
     }
 
 

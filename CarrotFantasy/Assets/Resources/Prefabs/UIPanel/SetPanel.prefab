@@ -1021,7 +1021,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114004814037829986}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: CloseOrOpenEffectMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114372291546516290
@@ -1182,7 +1193,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114303539132121550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: ResetGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114488858114278232
@@ -1277,7 +1299,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114348256046505406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: ShowStatisticsPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114533042306039238
@@ -1419,6 +1452,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff11a1b0723c9ea499bbbfe8ee3e2b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnSprites:
+  - {fileID: 21300000, guid: 17fc6b5eb0907e3419693d5cb04f65df, type: 3}
+  - {fileID: 21300000, guid: 946b6e64d4636db41a134bf2cafc172c, type: 3}
+  - {fileID: 21300000, guid: c33b12c27c5d5c44dbfe6a1a6eb7c288, type: 3}
+  - {fileID: 21300000, guid: 9779f94399eaffc4f91b976b99f5b29c, type: 3}
+  m_statisticesTexts:
+  - {fileID: 114940884471359960}
+  - {fileID: 114372291546516290}
+  - {fileID: 114026315856105554}
+  - {fileID: 114539400683543746}
+  - {fileID: 114731916025395926}
+  - {fileID: 114689113609484448}
+  - {fileID: 114407763717289596}
 --- !u!114 &114610354427835168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1633,7 +1679,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114544917185466428}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: ShowProducerPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114689113609484448
@@ -1794,7 +1851,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114666831999797082}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: ShowOptionPage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114847015726609798
@@ -2009,7 +2077,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114450177404047762}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: ExitPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114952993886691430
@@ -2104,7 +2183,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114267843118543446}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114605841695084492}
+        m_MethodName: CloseOrOpenBGMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!222 &222031846273869664

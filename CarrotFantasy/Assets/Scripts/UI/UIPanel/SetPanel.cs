@@ -17,7 +17,7 @@ public class SetPanel : BasePanel
     public Sprite[] btnSprites; // 0.音效开 1.音效关 2. BG音乐开 3. BG音乐关
     private Image m_btnAudioImg;
     private Image m_btnBgMusicImg;
-    private Text[] m_statisticesTexts; // 数据统计页面各Text文本
+    public Text[] m_statisticesTexts; // 数据统计页面各Text文本
 
     protected override void Awake()
     {
@@ -35,13 +35,7 @@ public class SetPanel : BasePanel
 
         m_panelReset = transform.Find("Panel_Reset").gameObject;
 
-        InitPanel();
-    }
-
-    public override void InitPanel()
-    {
-        transform.localPosition = new Vector3(-1920, 0, 0);
-        transform.SetSiblingIndex(2); // 设置渲染层级
+        //InitPanel();
     }
 
     public void ShowOptionPage()
@@ -54,17 +48,23 @@ public class SetPanel : BasePanel
     public void ShowStatisticsPage()
     {
         m_optionPage.SetActive(false);
-        m_producerPage.SetActive(true);
-        m_statisticsPage.SetActive(false);
+        m_producerPage.SetActive(false);
+        m_statisticsPage.SetActive(true);
+        ShowStatistics();
     }
 
     public void ShowProducerPage()
     {
         m_optionPage.SetActive(false);
-        m_producerPage.SetActive(false);
-        m_statisticsPage.SetActive(true);
+        m_producerPage.SetActive(true);
+        m_statisticsPage.SetActive(false);
     }
 
+    public override void InitPanel()
+    {
+        transform.localPosition = new Vector3(-1920, 0, 0);
+        transform.SetSiblingIndex(2); // 设置渲染层级
+    }
     public override void EnterPanel()
     {
         ShowOptionPage();
@@ -109,5 +109,34 @@ public class SetPanel : BasePanel
         {
             m_btnAudioImg.sprite = btnSprites[1];
         }
+    }
+
+    //数据显示 Todo
+    public void ShowStatistics()
+    {
+        PlayerManager playerManager = m_uiFacade.m_playerManager;
+        m_statisticesTexts[0].text = playerManager.adventrueModelNum.ToString();
+        m_statisticesTexts[1].text = playerManager.burriedLevelNum.ToString();
+        m_statisticesTexts[2].text = playerManager.bossModelNum.ToString();
+        m_statisticesTexts[3].text = playerManager.coin.ToString();
+        m_statisticesTexts[4].text = playerManager.killMonsterNum.ToString();
+        m_statisticesTexts[5].text = playerManager.killBossNum.ToString();
+        m_statisticesTexts[6].text = playerManager.clearItemNum.ToString();
+    }
+
+    //重置游戏 Todo
+    public void ResetGame()
+    {
+
+    }
+
+    public void ShowResetPanel()
+    {
+        m_panelReset.SetActive(true);
+    }
+
+    public void CloseResetPanel()
+    {
+        m_panelReset.SetActive(false);
     }
 }

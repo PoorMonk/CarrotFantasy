@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameNormalOptionPanel : MonoBehaviour {
+public class GameNormalOptionPanel : BasePanel
+{
+    [HideInInspector]
+    public bool IsInBigLevelPanel = true;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public void OnReturnBtnClicked()
+    {
+        if (IsInBigLevelPanel)
+        {
+            m_uiFacade.ChangeSceneState(new MainSceneState(m_uiFacade));
+        }
+        else
+        {
+            m_uiFacade.currentScenePanelDict[StringManager.GameNormalLevelPanel].ExitPanel();
+            m_uiFacade.currentScenePanelDict[StringManager.GameNormalBigLevelPanel].EnterPanel();
+        }
+        IsInBigLevelPanel = true;
+    }
 }

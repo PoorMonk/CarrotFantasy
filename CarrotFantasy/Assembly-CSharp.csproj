@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Factory\SpriteFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\UIFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\UIPanelFactory.cs" />
+    <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\NormalManager\AudioSourceManager.cs" />
@@ -90,11 +91,11 @@
     <Compile Include="Assets\Scripts\Scene\NormalGameOptionSceneState.cs" />
     <Compile Include="Assets\Scripts\Scene\NormalModelSceneState.cs" />
     <Compile Include="Assets\Scripts\Scene\StartLoadSceneState.cs" />
-    <Compile Include="Assets\Scripts\ScrollViewMove.cs" />
-    <Compile Include="Assets\Scripts\SlideScrollView.cs" />
     <Compile Include="Assets\Scripts\Test\DoTweenTest.cs" />
     <Compile Include="Assets\Scripts\Test\State.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\ScrollViewMove.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\SlideScrollView.cs" />
     <Compile Include="Assets\Scripts\UI\UIFacade.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BasePanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BossModelPanel.cs" />

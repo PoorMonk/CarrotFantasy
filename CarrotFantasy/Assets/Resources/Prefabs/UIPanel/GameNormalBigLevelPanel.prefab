@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 114533387980261334}
   - component: {fileID: 222762311770138214}
   - component: {fileID: 114295959470156236}
-  - component: {fileID: 114931461473405400}
+  - component: {fileID: 114933981451403540}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -642,7 +642,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114667547669025776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114432974399648228}
+        m_MethodName: OnLeftBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114193922607112690
@@ -667,7 +678,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -814,7 +825,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1067,6 +1078,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bdd5a9ae6096e4fb6cd864b5d51668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigLevelContentTrans: {fileID: 224577010741440136}
+  bigLevelPageCount: 3
 --- !u!114 &114474629887353254
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1197,7 +1210,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1464,7 +1477,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114931461473405400
+--- !u!114 &114933981451403540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1472,13 +1485,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618335814324872}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a205782ad62814694eaf47910583a3, type: 3}
+  m_Script: {fileID: 11500000, guid: ab117b0ff11cd5b4f925bd169909a08c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_cellLength: 1100
-  m_spacing: 400
+  m_spaceing: 400
   m_leftOffset: 300
   m_totalItemNum: 3
+  pageText: {fileID: 0}
 --- !u!114 &114934396895406846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1517,7 +1531,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114028318309591132}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114432974399648228}
+        m_MethodName: OnRightBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114996508551586372

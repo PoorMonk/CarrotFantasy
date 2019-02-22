@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoadPanel : MonoBehaviour {
+public class GameLoadPanel : BasePanel
+{
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public override void EnterPanel()
+    {
+        gameObject.SetActive(true);
+        transform.SetSiblingIndex(8);
+    }
+
+    public override void InitPanel()
+    {
+        gameObject.SetActive(false);
+    }
 }

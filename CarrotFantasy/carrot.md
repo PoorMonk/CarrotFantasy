@@ -200,4 +200,18 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 
 **UI显示问题：**
 
-将UIPanel做成预制体，通过工厂方法创建后，先是会生成在Hierarchy面板下，设置parent后才会显示在Canvas下，但是这样操作会有问题，UI显示大小比例都不对。解决方法：先将prefab拖到Canvas下，将缩放锚点由Stretch改为Center，然后点击Apply；再通过工厂创建设置到Canvas下后，修改其LocalPosition和Scale。
+1 将UIPanel做成预制体，通过工厂方法创建后，先是会生成在Hierarchy面板下，设置parent后才会显示在Canvas下，但是这样操作会有问题，UI显示**大小比例不对**。
+
+**解决方法**：先将prefab拖到Canvas下，将缩放锚点由Stretch改为Center，然后点击Apply；再通过工厂创建设置到Canvas下后，修改其LocalPosition(Vector3.Zero)和LocalScale(Vector3.One)。
+
+2 UGUI中由于不依赖摄像机渲染，无法通过修改Z值来改变物体间的层级关系，可以用如下函数：
+
+	transform.SetSillingIndex(int); // 参数越大越后渲染
+
+3 Scroll View的报空问题（DOTWEEN :: An error inside a tween callback was silently taken care of > Object reference not set to an instance of an object）：
+
+父物体先初始化的时候，挂有Scroll View的子物体还没初始化（也就是Awake）没调用，所有用到Scroll View脚本的方法时会有问题，需要加判断
+
+4 MainPanel面板的Button无法点击
+
+原因：事件交互依赖EventSystem，所以不能只让Canvas不销毁，EventSystem也需要添加不销毁的脚本。
