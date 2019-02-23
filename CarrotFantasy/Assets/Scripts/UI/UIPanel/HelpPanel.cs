@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HelpPanel : BasePanel
 {
@@ -55,11 +56,16 @@ public class HelpPanel : BasePanel
 
     public override void InitPanel()
     {
-        transform.localPosition = new Vector3(1920, 0, 0);
         transform.SetSiblingIndex(5);
         m_scrollViewMove.Init();   //将scroll view退回到初始状态
         m_slideScrollView.Init();
-        
+
+        if (transform.localPosition == Vector3.zero)
+        {
+            gameObject.SetActive(false);
+            m_helpPanelTween.PlayBackwards();
+        }
+        transform.localPosition = new Vector3(1920, 0, 0);
     }
 
     public override void EnterPanel()
@@ -73,9 +79,16 @@ public class HelpPanel : BasePanel
 
     public override void ExitPanel()
     {
-        m_helpPanelTween.PlayBackwards();
-        m_uiFacade.currentScenePanelDict[StringManager.MainPanel].EnterPanel();
-
+        if (m_uiFacade.currentSceneState.GetType() == typeof(NormalGameOptionSceneState))
+        {
+            m_uiFacade.ChangeSceneState(new MainSceneState(m_uiFacade));
+            SceneManager.LoadScene(1);
+        }
+        else //主场景
+        {
+            m_helpPanelTween.PlayBackwards();
+            m_uiFacade.currentScenePanelDict[StringManager.MainPanel].EnterPanel();
+        }
     }
 
     private void MoveToCenter()

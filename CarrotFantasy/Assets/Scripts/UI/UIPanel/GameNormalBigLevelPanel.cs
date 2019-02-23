@@ -85,6 +85,7 @@ public class GameNormalBigLevelPanel : BasePanel
                     GameNormalOptionPanel gameNormalOptionPanel = m_uiFacade.currentScenePanelDict[StringManager.GameNormalOptionPanel] as GameNormalOptionPanel;
                     gameNormalOptionPanel.IsInBigLevelPanel = false;
                 });
+                //theBigLevelButton.onClick.AddListener(delegate () { Test(bigLevelID); });
             }
 
         }
@@ -94,5 +95,15 @@ public class GameNormalBigLevelPanel : BasePanel
             theBigLevelButtonTrans.Find("Img_Bookmark").gameObject.SetActive(true);
             theBigLevelButtonTrans.GetComponent<Button>().interactable = false;
         }
+    }
+
+    private void Test(int bigLevelID)
+    {
+        Debug.Log("Test");
+        m_uiFacade.currentScenePanelDict[StringManager.GameNormalBigLevelPanel].ExitPanel();
+        GameNormalLevelPanel gameNormalLevelPanel = m_uiFacade.currentScenePanelDict[StringManager.GameNormalLevelPanel] as GameNormalLevelPanel;
+        gameNormalLevelPanel.ToThisPanel(bigLevelID);
+        GameNormalOptionPanel gameNormalOptionPanel = m_uiFacade.currentScenePanelDict[StringManager.GameNormalOptionPanel] as GameNormalOptionPanel;
+        gameNormalOptionPanel.IsInBigLevelPanel = false;
     }
 }

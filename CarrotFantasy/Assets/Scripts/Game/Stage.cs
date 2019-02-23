@@ -15,7 +15,7 @@ public class Stage
     public int m_totalRound;            //一共几波怪
 
     public Stage(int totalRound, int towerIDListLength, int[] towerIDList,
-        bool allClear, int carrotState, int levelID, int bigLevelID, bool locked, bool isReward)
+        bool allClear, int carrotState, int levelID, int bigLevelID, bool unLocked, bool isReward)
     {
         m_towerIDList = towerIDList;
         m_towerIDListLength = towerIDListLength;
@@ -23,7 +23,7 @@ public class Stage
         m_carrotState = carrotState;
         m_levelID = levelID;
         m_bigLevelID = bigLevelID;
-        m_unLocked = locked;
+        m_unLocked = unLocked;
         m_isRewardLevel = isReward;
         m_totalRound = totalRound;
     }

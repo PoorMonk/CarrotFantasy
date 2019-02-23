@@ -25,6 +25,10 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public Text pageText;
 
+    private Vector2 m_contentSize;
+
+    public bool isNeedSendMessage = false;
+
     public int CurrentIndex
     {
         get
@@ -41,6 +45,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 		m_currentContentLocalPos = m_contentTrans.localPosition;
         m_contentInitPos = m_currentContentLocalPos;
 		m_currentIndex = 1;
+        m_contentSize = m_contentTrans.sizeDelta;
 	}
 
     public void Init()
@@ -62,7 +67,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 	{
 		m_endMousepositionX = Input.mousePosition.x;
 		float offsetX = 0;
-		float moveDistance = 0; // 当次需要滑动的距离
+		//float moveDistance = 0; // 当次需要滑动的距离
 		offsetX = m_beginMousePositionX - m_endMousepositionX;
 
 		if (offsetX > 0) // 右滑
@@ -73,7 +78,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             //}
             //moveDistance = -m_moveOneItemLength;
             //         m_currentIndex++;
-            Move(true);
+            Move(false);
 		}
 		else // 左滑
 		{
@@ -83,7 +88,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
             //}
             //moveDistance = m_moveOneItemLength;
             //         m_currentIndex--;
-            Move(false);
+            Move(true);
 		}
 
 		//DOTween.To(()=>m_contentTrans.localPosition, lerpValue=>m_contentTrans.localPosition=lerpValue, m_currentContentLocalPos + new Vector3(moveDistance,0,0), 0.3f).SetEase(Ease.Linear);
@@ -92,29 +97,33 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 
     public void OnLeftPageBtnClicked()
     {
-        Move(false);
+        Move(true);
     }
 
     public void OnRightPageBtnClicked()
     {
-        Move(true);
+        Move(false);
     }
 
     private void Move(bool isRight)
     {
         float moveDistance = 0;
-        if ((isRight && m_currentIndex >= m_totalItemNum) || (!isRight && m_currentIndex <= 0))
+        if ((!isRight && m_currentIndex >= m_totalItemNum) || (isRight && m_currentIndex <= 1))
         {
             return;
+        }
+        if (isNeedSendMessage)
+        {
+            UpdatePanel(isRight);
         }
         moveDistance = isRight ? m_moveOneItemLength : -m_moveOneItemLength;
         if (isRight)
         {
-            m_currentIndex++;
+            m_currentIndex--;
         }
         else
         {
-            m_currentIndex--;
+            m_currentIndex++;
         }
         if (pageText != null)
         {
@@ -122,5 +131,32 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         }
         DOTween.To(() => m_contentTrans.localPosition, lerpValue => m_contentTrans.localPosition = lerpValue, m_currentContentLocalPos + new Vector3(moveDistance, 0, 0), 0.3f).SetEase(Ease.Linear);
         m_currentContentLocalPos += new Vector3(moveDistance, 0, 0);
+    }
+
+    //设置Content的大小
+    public void SetContent(int itemNum)
+    {
+        m_contentTrans.sizeDelta = new Vector2(m_contentTrans.sizeDelta.x + (m_cellLength + m_spaceing) * (itemNum - 1),
+            m_contentTrans.sizeDelta.y);
+        m_totalItemNum = itemNum;
+    }
+
+    //初始化Content的大小
+    public void InitContent()
+    {
+        m_contentTrans.sizeDelta = m_contentSize;
+    }
+
+    //发送翻页信息
+    public void UpdatePanel(bool toNext)
+    {
+        if (toNext)
+        {
+            gameObject.SendMessageUpwards("ToNextStage");
+        }
+        else
+        {
+            gameObject.SendMessageUpwards("ToLastStage");
+        }
     }
 }

@@ -22,4 +22,31 @@ public class PlayerManager
     public int milk;
     public int nest;
     public int diamands;
+
+    //用于测试
+    public PlayerManager()
+    {
+        adventrueModelNum = 100;
+        burriedLevelNum = 100;
+        bossModelNum = 100;
+        coin = 1000;
+        killBossNum = 10;
+        killMonsterNum = 200;
+        clearItemNum = 100;
+
+        unLockedNormalModelLevelNum = new List<int>() { 2, 2, 2 };
+        unLockedNormalModelBigLevelList = new List<bool>() { true, true, true };
+        unLockedNormalModelLevelList = new List<Stage>() {
+            new Stage(10, 2, new int[]{ 1,2 }, false, 0, 1, 1, true, false),
+            new Stage(10, 2, new int[]{ 3,2 }, false, 0, 2, 1, true, false),
+            new Stage(10, 2, new int[]{ 4,2 }, false, 0, 3, 1, true, false),
+            new Stage(10, 2, new int[]{ 5,2 }, false, 0, 4, 1, true, false),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true)
+        };
+    }
 }

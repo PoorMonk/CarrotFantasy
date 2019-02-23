@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_Vertical: 0
   m_MovementType: 1
   m_Elasticity: 0.1
-  m_Inertia: 1
+  m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1
   m_Viewport: {fileID: 224322042105895336}
@@ -1493,6 +1493,7 @@ MonoBehaviour:
   m_leftOffset: 300
   m_totalItemNum: 3
   pageText: {fileID: 0}
+  isNeedSendMessage: 0
 --- !u!114 &114934396895406846
 MonoBehaviour:
   m_ObjectHideFlags: 1

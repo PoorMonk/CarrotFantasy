@@ -20,4 +20,9 @@ public class GameNormalOptionPanel : BasePanel
         }
         IsInBigLevelPanel = true;
     }
+
+    public void OnHelpBtnClicked()
+    {
+        m_uiFacade.currentScenePanelDict[StringManager.HelpPanel].EnterPanel();
+    }
 }
