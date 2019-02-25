@@ -215,3 +215,8 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 4 MainPanel面板的Button无法点击
 
 原因：事件交互依赖EventSystem，所以不能只让Canvas不销毁，EventSystem也需要添加不销毁的脚本。
+
+5 由大关卡进入小关卡时，关卡界面没显示出来，小关卡所能使用的炮塔UI也不显示
+
+原因：在创建Sprite对象时，需要设置父物体；由于代码中错把这一步（transform.SetParent(parentTrans)）写成了SetActive，所以造成了上述问题。（就这么简单的问题花了好几个小时来查找原因，所以写代码一定要细心）
+

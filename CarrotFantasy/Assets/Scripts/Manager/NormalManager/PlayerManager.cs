@@ -42,11 +42,11 @@ public class PlayerManager
             new Stage(10, 2, new int[]{ 4,2 }, false, 0, 3, 1, true, false),
             new Stage(10, 2, new int[]{ 5,2 }, false, 0, 4, 1, true, false),
             new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true)
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 1, 2, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 2, 2, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 3, 2, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 4, 2, true, true),
+            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 2, true, true)
         };
     }
 }

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler {
 
-	private RectTransform m_contentTrans;
+	private RectTransform m_contentTrans;   //Content对象
 	private float m_beginMousePositionX;
 	private float m_endMousepositionX;
 	private ScrollRect m_scrollRect;
@@ -17,8 +17,8 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 	public int m_leftOffset;
 	private float m_moveOneItemLength;
 
-	private Vector3 m_currentContentLocalPos;
-    private Vector3 m_contentInitPos;
+	private Vector3 m_currentContentLocalPos;   //content的位置
+    private Vector3 m_contentInitPos;           //保存content的初始位置
 
 	public int m_totalItemNum;
 	private int m_currentIndex;
@@ -67,32 +67,16 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 	{
 		m_endMousepositionX = Input.mousePosition.x;
 		float offsetX = 0;
-		//float moveDistance = 0; // 当次需要滑动的距离
 		offsetX = m_beginMousePositionX - m_endMousepositionX;
 
 		if (offsetX > 0) // 右滑
-		{
-            //if (CurrentIndex >= m_totalItemNum)
-            //{
-            //	return;
-            //}
-            //moveDistance = -m_moveOneItemLength;
-            //         m_currentIndex++;
+		{           
             Move(false);
 		}
 		else // 左滑
 		{
-            //if (CurrentIndex <= 1)
-            //{
-            //	return;
-            //}
-            //moveDistance = m_moveOneItemLength;
-            //         m_currentIndex--;
             Move(true);
 		}
-
-		//DOTween.To(()=>m_contentTrans.localPosition, lerpValue=>m_contentTrans.localPosition=lerpValue, m_currentContentLocalPos + new Vector3(moveDistance,0,0), 0.3f).SetEase(Ease.Linear);
-		//m_currentContentLocalPos += new Vector3(moveDistance, 0, 0);
 	}
 
     public void OnLeftPageBtnClicked()
@@ -105,6 +89,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         Move(false);
     }
 
+    //手指向右滑动表示左移一个关卡
     private void Move(bool isRight)
     {
         float moveDistance = 0;
@@ -114,7 +99,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         }
         if (isNeedSendMessage)
         {
-            UpdatePanel(isRight);
+            UpdatePanel(!isRight);
         }
         moveDistance = isRight ? m_moveOneItemLength : -m_moveOneItemLength;
         if (isRight)

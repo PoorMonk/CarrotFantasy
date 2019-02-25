@@ -33,7 +33,7 @@ public class GameNormalLevelPanel : BasePanel
         m_playerManager = m_uiFacade.m_playerManager;
         m_levelContentImageList = new List<GameObject>();
         m_towerContentImageList = new List<GameObject>();
-        levelContentTrans = transform.Find("Scroll View").Find("Viewport").Find("Content").transform;
+        levelContentTrans = transform.Find("Scroll View").Find("Viewport").Find("Content");
         imgLockBtnGo = transform.Find("Img_LockBtn").gameObject;
         empTowerTrans = transform.Find("Emp_Tower");
         imgBGLeft = transform.Find("Img_BGLeft").GetComponent<Image>();
@@ -52,9 +52,7 @@ public class GameNormalLevelPanel : BasePanel
     public override void EnterPanel()
     {
         gameObject.SetActive(true);
-        DestroyMapUI();
         m_spritePath = filePath + currentBigLevelID.ToString() + "/";
-        //Debug.Log(m_spritePath);
         UpdateMapUI(m_spritePath);
         UpdateLevelUI(m_spritePath);
         m_slideScrollView.Init();
@@ -103,9 +101,8 @@ public class GameNormalLevelPanel : BasePanel
     public void UpdateLevelUI(string spritePath)
     {
         DestroyLevelUI();
-        
+        Debug.Log("ID:" + ((currentBigLevelID - 1) * 5 + currentLevelID - 1));
         Stage stage = m_playerManager.unLockedNormalModelLevelList[(currentBigLevelID - 1) * 5 + currentLevelID - 1];
-        //Debug.Log("allclear:" + stage.m_allClear)
         if (stage.m_unLocked) //已解锁
         {
             imgLockBtnGo.SetActive(false);
@@ -201,7 +198,7 @@ public class GameNormalLevelPanel : BasePanel
     public GameObject CreateUI(string uiName, Transform parentTrans)
     {
         GameObject itemGo = m_uiFacade.GetGameObjectResource(FactoryType.UIFactory, uiName);
-        itemGo.SetActive(parentTrans);
+        itemGo.transform.SetParent(parentTrans);
         itemGo.transform.localPosition = Vector3.zero;
         itemGo.transform.localScale = Vector3.one;
         return itemGo;
@@ -210,7 +207,6 @@ public class GameNormalLevelPanel : BasePanel
     public void ToThisPanel(int currentBigLevel)
     {
         currentBigLevelID = currentBigLevel;
-        Debug.Log(currentBigLevelID);
         currentLevelID = 1;
         EnterPanel();
     }

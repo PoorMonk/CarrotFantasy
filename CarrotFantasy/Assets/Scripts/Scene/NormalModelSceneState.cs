@@ -8,4 +8,16 @@ public class NormalModelSceneState : BaseSceneState {
     {
 
     }
+
+    public override void EnterScene()
+    {
+        m_uiFacade.AddPanelToDict(StringManager.GameLoadPanel);
+        m_uiFacade.AddPanelToDict(StringManager.NormalModelPanel);
+        base.EnterScene();
+    }
+
+    public override void ExitScene()
+    {
+        base.ExitScene();
+    }
 }
