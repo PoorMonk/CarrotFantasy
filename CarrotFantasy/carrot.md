@@ -220,3 +220,11 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 
 原因：在创建Sprite对象时，需要设置父物体；由于代码中错把这一步（transform.SetParent(parentTrans)）写成了SetActive，所以造成了上述问题。（就这么简单的问题花了好几个小时来查找原因，所以写代码一定要细心）
 
+6 Scroll View滑动的时候，不会立即停在当前页面
+
+解决方案：去掉Scroll Rect组件中的Inertia属性。
+
+7 生成的格子Grid不响应OnMouseDown事件
+
+解决方案：将Grid Prefab的BoxCollider改为BoxCollider 2D类型
+
