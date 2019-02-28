@@ -10,10 +10,12 @@ public class GridPoint : MonoBehaviour {
     private SpriteRenderer spriteRenderer;
 
     private Sprite gridSprite;
-    private Sprite monsterPathSprite; //怪物路点图片
 
+#if Tool
+    private Sprite monsterPathSprite; //怪物路点图片
     public GameObject[] itemPrefabs;    //道具数组
     public GameObject currentItem;      //当前格子道具
+#endif
 
     public struct GridState
     {
@@ -34,8 +36,7 @@ public class GridPoint : MonoBehaviour {
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
+#if Tool
         gridSprite = Resources.Load<Sprite>("Pictures/NormalModel/Game/Grid");
         monsterPathSprite = Resources.Load<Sprite>("Pictures/NormalModel/Game/1/Monster/6-1");
 
@@ -49,8 +50,47 @@ public class GridPoint : MonoBehaviour {
                 Debug.Log("加载失败，路径：" + itemPath + i);
             }
         }
+#endif
+        spriteRenderer = GetComponent<SpriteRenderer>();
         InitGrid();
     }
+
+#if Game
+    //更新格子状态
+    public void UpdateGrid()
+    {
+        if (gridState.canBuild)
+        {
+            spriteRenderer.enabled = true;
+            if (gridState.hasItem)
+            {
+                CreateItem();
+            }
+        }
+        else
+        {
+            spriteRenderer.enabled = false;
+        }
+    }
+
+    private void CreateItem()
+    {
+        GameObject go = GameController.Instance.GetGameObject(GameController.Instance.mapMaker.bigLevelID.ToString() + "/Item/" + gridState.itemID.ToString());
+        go.transform.SetParent(GameController.Instance.transform);
+
+        Vector3 createPos = transform.position - new Vector3(0, 0, 3);
+        if (gridState.itemID <= 2)
+        {
+            createPos += new Vector3(GameController.Instance.mapMaker.m_gridWidth, GameController.Instance.mapMaker.m_gridHeight) / 2;
+        }
+        else if (gridState.itemID <= 4)
+        {
+            createPos += new Vector3(GameController.Instance.mapMaker.m_gridWidth, 0, 0) / 2;
+        }
+        go.transform.position = createPos;
+        go.GetComponent<Item>().gridPoint = this;
+    }
+#endif
 
     public void InitGrid()
     {
@@ -59,9 +99,13 @@ public class GridPoint : MonoBehaviour {
         gridState.hasItem = false;
         spriteRenderer.enabled = true;
         gridState.itemID = -1;
+#if Tool
+        spriteRenderer.sprite = gridSprite;
+        Destroy(currentItem);
+#endif
     }
 
-
+#if Tool
     private void OnMouseDown()
     {
         if (Input.GetKey(KeyCode.P)) //怪物路点
@@ -82,7 +126,8 @@ public class GridPoint : MonoBehaviour {
             }
         }
         else if (Input.GetKey(KeyCode.I)) //道具
-        {         
+        {
+            gridState.itemID++;
             if (gridState.itemID == itemPrefabs.Length)
             {
                 gridState.itemID = 0;
@@ -99,11 +144,20 @@ public class GridPoint : MonoBehaviour {
                 Destroy(currentItem);
                 CreateItem();
             }
-            gridState.itemID++;
+            gridState.hasItem = true;
         }
         else if (!gridState.isMonsterPoint)
         {
-
+            gridState.isMonsterPoint = false;
+            gridState.canBuild = !gridState.canBuild;
+            if (gridState.canBuild)
+            {
+                spriteRenderer.enabled = true;
+            }
+            else
+            {
+                spriteRenderer.enabled = false;
+            }
         }
     }
 
@@ -118,7 +172,33 @@ public class GridPoint : MonoBehaviour {
         {
             pos += new Vector3(MapMaker.Instance.m_gridWidth, 0, 0) / 2;
         }
+        //Debug.Log(gridState.itemID);
         currentItem = Instantiate(itemPrefabs[gridState.itemID], pos, Quaternion.identity);
         currentItem.transform.SetParent(transform);
     }
+
+    public void UpdateGrid()
+    {
+        if (gridState.canBuild)
+        {
+            spriteRenderer.sprite = gridSprite;
+            spriteRenderer.enabled = true;
+            if (gridState.hasItem)
+            {
+                CreateItem();
+            }
+        }
+        else
+        {
+            if (gridState.isMonsterPoint)
+            {
+                spriteRenderer.sprite = monsterPathSprite;
+            }
+            else
+            {
+                spriteRenderer.enabled = false;
+            }
+        }
+    }
+#endif
 }

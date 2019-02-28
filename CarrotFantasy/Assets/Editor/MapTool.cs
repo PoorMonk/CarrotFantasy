@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+#if Tool
 [CustomEditor(typeof(MapMaker))]
 public class MapTool : Editor {
 
@@ -26,14 +27,18 @@ public class MapTool : Editor {
             EditorGUILayout.BeginHorizontal();
             fileNameList = GetNames(fileList);
             int currentIndex = EditorGUILayout.Popup(selectedIndex, fileNameList);
+            
             if (currentIndex != selectedIndex) //当前选择对象是否改变
             {
+                //Debug.Log("currentIndex:" + currentIndex);
+                //Debug.Log("selectedIndex:" + selectedIndex);
                 selectedIndex = currentIndex;
 
                 //实例化地图
                 mapMaker.InitMap();
 
                 //加载当前选择的level文件
+                mapMaker.LoadLevelInfo(mapMaker.LoadLevelInfoFromJson(fileNameList[selectedIndex]));
             }
 
             if (GUILayout.Button("读取Stage文件列表"))
@@ -56,7 +61,7 @@ public class MapTool : Editor {
 
             if (GUILayout.Button("保存当前关卡数据文件"))
             {
-
+                mapMaker.SaveLevelfileToJson();
             }
         }
     }
@@ -99,3 +104,4 @@ public class MapTool : Editor {
         return names.ToArray();
     }
 }
+#endif

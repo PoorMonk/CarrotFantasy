@@ -198,6 +198,10 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 		}
 	}
 
+Unity宏定义
+
+Build Setting --> Player Settings --> Scripting Define Symbols下定义
+
 **UI显示问题：**
 
 1 将UIPanel做成预制体，通过工厂方法创建后，先是会生成在Hierarchy面板下，设置parent后才会显示在Canvas下，但是这样操作会有问题，UI显示**大小比例不对**。
@@ -227,4 +231,33 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 7 生成的格子Grid不响应OnMouseDown事件
 
 解决方案：将Grid Prefab的BoxCollider改为BoxCollider 2D类型
+
+8 获取屏幕及格子大小
+
+	public void CalculateSize()
+    {
+        // 视口中左下右上的位置
+        Vector3 leftDown = new Vector3(0, 0);
+        Vector3 rightTop = new Vector3(1, 1);
+
+        Vector3 posOne = Camera.main.ViewportToWorldPoint(leftDown); //将左下角位置转换为Vector3
+        Vector3 posTwo = Camera.main.ViewportToWorldPoint(rightTop); //将右上角位置转换为Vector3
+
+        m_mapWidth = posTwo.x - posOne.x;	//获取到屏幕宽度
+        m_mapHeight = posTwo.y - posOne.y;	//获取到屏幕高度
+
+        m_gridWidth = m_mapWidth / xCol;	//屏宽除以列数就是单个格子的宽度
+        m_gridHeight = m_mapHeight / yRow;	//屏高除以行数就是单个格子的高度
+    }
+
+9 Canvas的摄像机与游戏场景的摄像机是分别渲染再融合输出到屏幕上的，如何配合使用？
+
+首先，将Canvas组件的Render Mode由原来的Screen Space - Overlay改为World Space，然后拖到Sprite图片下；Reset Canvas的Transform，同时将Scale缩小100倍（由1改为0.01），Order in Layer与Sprite的保持一致，这样就能显示到一起同时使用UGUI的属性方法。
+
+
+**Json读取问题：**
+
+1 数据读取成功，但是一直报空。
+
+原因：数据保存时是以一维数组保存的，所以如果要读取的类信息中有二维数组，要转成一维数组（List之类的），然后自己转换成对应的下标。
 
