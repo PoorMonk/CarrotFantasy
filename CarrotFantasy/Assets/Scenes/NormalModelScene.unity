@@ -179,48 +179,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &282096845
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4226985542917520, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7aac17987d8e5514ba9195bbef855194, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +308,21 @@ MonoBehaviour:
   monsterIDIndex: 0
   normalModelPanel: {fileID: 0}
   mapMaker: {fileID: 0}
+  controllers: []
+  killMonsterNum: 0
+  clearItemNum: 0
+  killMonsterTotalNum: 0
+  carrotHP: 10
+  coin: 0
+  gameSpeed: 0
+  isPause: 0
+  targetTrans: {fileID: 0}
+  targetSignal: {fileID: 0}
+  selectedGrid: {fileID: 0}
+  IsCreateingMonster: 0
+  IsGameOver: 0
+  towerList: {fileID: 0}
+  handleTowerCanvas: {fileID: 0}
 --- !u!4 &836169226
 Transform:
   m_ObjectHideFlags: 0

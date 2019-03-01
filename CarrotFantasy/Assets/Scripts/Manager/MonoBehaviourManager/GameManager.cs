@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 	{
 		DontDestroyOnLoad(gameObject);
 		_instance = this;
-
+        Debug.Log("GameManager");
 		// 各Manager初始化的时候注意顺序
 		m_playerManager = new PlayerManager();
 		m_factoryManager = new FactoryManager();

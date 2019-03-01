@@ -273,6 +273,7 @@ public class MapMaker : MonoBehaviour {
                 // 改变状态
                 gridPoints[x, y].UpdateGrid();
 #endif
+                gridPoints[x, y].UpdateGrid();
             }
         }
         monsterPath.Clear();
