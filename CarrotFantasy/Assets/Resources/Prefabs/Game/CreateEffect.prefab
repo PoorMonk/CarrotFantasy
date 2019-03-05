@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4226985542917520}
   - component: {fileID: 212084742463923474}
   - component: {fileID: 95142203496949876}
+  - component: {fileID: 114631781180876680}
   m_Layer: 0
   m_Name: CreateEffect
   m_TagString: Untagged
@@ -89,6 +90,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114631781180876680
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1187622772412728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 118c48b39a148f041bd13099e1db2661, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationTime: 0.3
+  resourcePath: CreateEffect
 --- !u!212 &212084742463923474
 SpriteRenderer:
   m_ObjectHideFlags: 1

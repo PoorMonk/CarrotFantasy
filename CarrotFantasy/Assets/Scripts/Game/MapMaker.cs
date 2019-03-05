@@ -48,7 +48,6 @@ public class MapMaker : MonoBehaviour {
     private SpriteRenderer roadSR;
 
     //每一波产生的怪物ID列表
-    [HideInInspector]
     public List<Round.RoundInfo> roundInfos;
 
     [HideInInspector]
@@ -58,8 +57,8 @@ public class MapMaker : MonoBehaviour {
     {
 #if Tool
         _instance = this;
-#endif
         InitMapMaker();
+#endif
     }
 
     public void InitMapMaker()
