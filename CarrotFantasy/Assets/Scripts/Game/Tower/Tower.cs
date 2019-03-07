@@ -19,7 +19,8 @@ public class Tower : MonoBehaviour {
         m_towerPersonalProperty.tower = this;
         m_attackRangeSr = transform.Find("attackRange").GetComponent<SpriteRenderer>();
         m_attackRangeSr.gameObject.SetActive(false);
-        m_circleCollider2D.radius = 5;
+        m_attackRangeSr.transform.localScale = new Vector3(m_towerPersonalProperty.towerLevel, m_towerPersonalProperty.towerLevel, 1);
+        m_circleCollider2D.radius = 1.1f * m_towerPersonalProperty.towerLevel;
         isTarget = false;
         hasTarget = false;
     }
@@ -34,8 +35,102 @@ public class Tower : MonoBehaviour {
         Init();
     }
 
+    private void Update()
+    {
+        if (isTarget)
+        {
+            if (m_towerPersonalProperty.targetTrans != GameController.Instance.targetTrans)
+            {
+                m_towerPersonalProperty.targetTrans = null;
+                hasTarget = false;
+                isTarget = false;
+            }
+        }
+        if (hasTarget)
+        {
+            if (!m_towerPersonalProperty.targetTrans.gameObject.activeSelf)
+            {
+                m_towerPersonalProperty.targetTrans = null;
+                hasTarget = false;
+                isTarget = false;
+            }
+        }
+    }
+
     public void GetTowerProperty()
     {
 
+    }
+
+    private void TriggerLogic(Collider2D collision)
+    {
+        if (!collision.tag.Equals("Monster") && !collision.tag.Equals("Item") && isTarget)
+        {
+            return;
+        }
+        Transform targetTrans = GameController.Instance.targetTrans;
+        if (targetTrans != null) //有集火目标
+        {
+            if (!isTarget) //还没有找到集火目标
+            {
+                //是物品且是集火目标
+                if (collision.tag.Equals("Item") && targetTrans == collision.transform)
+                {
+                    m_towerPersonalProperty.targetTrans = targetTrans;
+                    hasTarget = true;
+                    isTarget = true;
+                }
+                else if (collision.tag.Equals("Monster")) //找到的是怪物
+                {
+                    if (targetTrans == collision.transform) //是集火目标
+                    {
+                        m_towerPersonalProperty.targetTrans = targetTrans;
+                        hasTarget = true;
+                        isTarget = true;
+                    }
+                    else if (targetTrans != collision.transform && !hasTarget)
+                    {
+                        m_towerPersonalProperty.targetTrans = collision.transform;
+                        hasTarget = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (!hasTarget && collision.tag.Equals("Monster"))
+            {
+                m_towerPersonalProperty.targetTrans = collision.transform;
+                hasTarget = true;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        TriggerLogic(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        TriggerLogic(collision);
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (m_towerPersonalProperty.targetTrans == collision.transform)
+        {
+            m_towerPersonalProperty.targetTrans = null;
+            hasTarget = false;
+            isTarget = false;
+        }
+    }
+
+    public void DestroyTower()
+    {
+        m_towerPersonalProperty.Init();
+        Init();
+        GameController.Instance.PushGameObjectToFactory("Tower/ID" + towerID.ToString() 
+            + "/TowerSet/" + m_towerPersonalProperty.towerLevel.ToString(), gameObject);
     }
 }

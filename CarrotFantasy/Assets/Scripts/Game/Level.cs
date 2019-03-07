@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 每一关卡的逻辑处理
+/// </summary>
 public class Level
 {
     public int totalRound;

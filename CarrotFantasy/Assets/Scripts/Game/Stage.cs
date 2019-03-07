@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 每一关卡所需的信息类
+/// </summary>
 public class Stage
 {
     public int[] m_towerIDList;         //本关卡可以建的塔种类

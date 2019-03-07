@@ -15,6 +15,7 @@ public class Coin : MonoBehaviour {
     {
         m_coinImg = transform.Find("Img_Coin").GetComponent<Image>();
         m_coinText = transform.Find("Text_Coin").GetComponent<Text>();
+        m_coinSprites = new Sprite[2];
         m_coinSprites[0] = GameController.Instance.GetSprite("NormalModel/Game/Coin");
         m_coinSprites[1] = GameController.Instance.GetSprite("NormalModel/Game/ManyCoin");
     }

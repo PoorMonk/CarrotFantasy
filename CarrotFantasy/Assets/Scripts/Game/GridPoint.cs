@@ -40,11 +40,18 @@ public class GridPoint : MonoBehaviour {
 
     private GameController m_gameController;
     private GameObject m_towerListGo;
-    private GameObject m_handleTowerCanvas;
+    public GameObject m_handleTowerCanvas;
     private Transform m_upLevelBtnTrans;
     private Transform m_sellBtnTrans;
     private Vector3 m_upLevelInitPos;
     private Vector3 m_sellInitPos;
+
+    //有塔时的属性
+    public GameObject towerGo;
+    public Tower tower;
+    public int towerLevel;
+    private GameObject m_levelUpSignalGo;                 //可以升级的信号
+    public TowerPersonalProperty towerPersonalProperty;
 
     private void Awake()
     {
@@ -79,7 +86,35 @@ public class GridPoint : MonoBehaviour {
         m_sellBtnTrans = m_handleTowerCanvas.transform.Find("Btn_SellTower");
         m_upLevelInitPos = m_upLevelBtnTrans.localPosition;
         m_sellInitPos = m_sellBtnTrans.localPosition;
+
+        m_levelUpSignalGo = transform.Find("LevelUPSignal").gameObject;
+        m_levelUpSignalGo.SetActive(false);
 #endif
+    }
+
+    private void Update()
+    {
+        if (m_levelUpSignalGo != null)
+        {
+            if (isHasTower)
+            {
+                if (towerPersonalProperty.upLevelPrice <= m_gameController.coin && towerLevel < 3)
+                {
+                    m_levelUpSignalGo.SetActive(true);
+                }
+                else
+                {
+                    m_levelUpSignalGo.SetActive(false);
+                }
+            }
+            else
+            {
+                if (m_levelUpSignalGo.activeSelf)
+                {
+                    m_levelUpSignalGo.SetActive(false);
+                }
+            }
+        }
     }
 
 #if Game
@@ -96,6 +131,10 @@ public class GridPoint : MonoBehaviour {
     {
         m_spriteRenderer.enabled = false;
         //对塔的后续处理
+        towerGo = transform.GetChild(1).gameObject;
+        tower = towerGo.GetComponent<Tower>();
+        towerPersonalProperty = towerGo.GetComponent<TowerPersonalProperty>();
+        towerLevel = towerPersonalProperty.towerLevel;
     }
 
     private Vector3 CorretTowerListPosition()
@@ -164,6 +203,7 @@ public class GridPoint : MonoBehaviour {
             CorretUpLevelAndSellBtnPos();
             m_handleTowerCanvas.SetActive(true);
             //显示范围
+            towerGo.transform.Find("attackRange").gameObject.SetActive(true);
         }
     }
 
@@ -176,6 +216,7 @@ public class GridPoint : MonoBehaviour {
         else
         {
             m_handleTowerCanvas.SetActive(false);
+            towerGo.transform.Find("attackRange").gameObject.SetActive(false);
         }
         m_spriteRenderer.enabled = false;
     }
@@ -228,6 +269,7 @@ public class GridPoint : MonoBehaviour {
     {
         GameObject go = GameController.Instance.GetGameObject(GameController.Instance.mapMaker.bigLevelID.ToString() + "/Item/" + gridState.itemID.ToString());
         go.transform.SetParent(GameController.Instance.transform);
+        go.GetComponent<Item>().itemID = gridState.itemID;
 
         Vector3 createPos = transform.position - new Vector3(0, 0, 3);
         if (gridState.itemID <= 2)
@@ -253,6 +295,12 @@ public class GridPoint : MonoBehaviour {
 #if Tool
         spriteRenderer.sprite = gridSprite;
         Destroy(currentItem);
+#endif
+
+#if Game
+        towerGo = null;
+        towerPersonalProperty = null;
+        isHasTower = false;
 #endif
     }
 

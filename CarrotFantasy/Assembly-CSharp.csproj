@@ -86,6 +86,7 @@
     <Compile Include="Assets\Scripts\Game\Monster.cs" />
     <Compile Include="Assets\Scripts\Game\Round.cs" />
     <Compile Include="Assets\Scripts\Game\Stage.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Tower.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\TowerPersonalProperty.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Assets\Scripts\Test\DoTweenTest.cs" />
     <Compile Include="Assets\Scripts\Test\MouseListen.cs" />
     <Compile Include="Assets\Scripts\Test\State.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\BtnSellTower.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\BtnUpLevel.cs" />
     <Compile Include="Assets\Scripts\UI\UI\ButtonTower.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\UI\UI\Coin.cs" />
