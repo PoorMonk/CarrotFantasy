@@ -89,7 +89,7 @@ public class MapMaker : MonoBehaviour {
 
     private Vector3 CorretPosition(float x, float y)
     {
-        return new Vector3(x - m_mapWidth / 2 + m_gridWidth / 2, y - m_mapHeight / 2 + m_gridHeight / 2, -7);
+        return new Vector3(x - m_mapWidth / 2 + m_gridWidth / 2, y - m_mapHeight / 2 + m_gridHeight / 2);
     }
 
 #if Game
@@ -111,7 +111,7 @@ public class MapMaker : MonoBehaviour {
         startPoint.transform.SetParent(transform);
 
         GameObject endPoint = GameController.Instance.GetGameObject("Carrot");
-        endPoint.transform.position = monsterPathPos[monsterPathPos.Count - 1];
+        endPoint.transform.position = monsterPathPos[monsterPathPos.Count - 1] - new Vector3(0, 0, 1);
         endPoint.transform.SetParent(transform);
 
         carrot = endPoint.GetComponent<Carrot>();

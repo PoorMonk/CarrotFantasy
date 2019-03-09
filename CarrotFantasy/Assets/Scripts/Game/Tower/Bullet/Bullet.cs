@@ -67,15 +67,9 @@ public class Bullet : MonoBehaviour {
                 {
                     return;
                 }
-                if (collider.tag.Equals("Monster"))
+                if (collider.tag.Equals("Monster") || (collider.tag.Equals("Item") && GameController.Instance.targetTrans == collider.transform))
                 {
-                    transform.SendMessage("TakeDamage", attackValue);
-                    DestroyBullet();
-                    CreateEffect();
-                }
-                if (collider.tag.Equals("Item") && GameController.Instance.targetTrans == collider.transform)
-                {
-                    //道具受伤害
+                    collider.SendMessage("TakeDamage", attackValue);
                     DestroyBullet();
                     CreateEffect();
                 }

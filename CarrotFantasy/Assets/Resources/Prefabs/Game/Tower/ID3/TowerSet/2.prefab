@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4058933292236628}
   - component: {fileID: 58620859764746612}
   - component: {fileID: 114293068812006190}
-  - component: {fileID: 114194451808740966}
+  - component: {fileID: 114198986119134980}
   m_Layer: 0
   m_Name: 2
   m_TagString: Untagged
@@ -166,7 +166,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114194451808740966
+--- !u!114 &114198986119134980
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,10 +174,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1087421679832144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf96736ce258154db1c8feed4773bc5, type: 3}
+  m_Script: {fileID: 11500000, guid: b9330b3d4969f2d4f819b55a3fa725c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerLevel: 2
+  attackCD: 0.8
+  upLevelPrice: 0
+  sellPrice: 0
+  price: 240
   tower: {fileID: 0}
+  targetTrans: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &114293068812006190
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -23,7 +23,8 @@ public class BtnSellTower : MonoBehaviour {
     // Use this for initialization
     void Start () {
         m_gameController = GameController.Instance;
-        m_button.GetComponent<Button>();
+        m_text = GetComponent<Text>();
+        m_button = GetComponent<Button>();
         m_button.onClick.AddListener(OnBtnSellTowerClicked);
 	}
 	

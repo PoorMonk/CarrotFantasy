@@ -38,6 +38,7 @@ public class Monster : MonoBehaviour {
         m_slider.gameObject.SetActive(false);
         m_gameController = GameController.Instance;
         m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
+        shitGo = transform.Find("DecreaseDebuff").gameObject;
     }
 
     private void OnEnable()
@@ -80,7 +81,28 @@ public class Monster : MonoBehaviour {
     //取消减速buff
     private void CancelDecreaseDebuff()
     {
+        moveSpeed = initMoveSpeed;
+        m_isDecreaseSpeed = false;
+        shitGo.SetActive(false);
+    }
 
+    //减速buff
+    private void DecreaseDebuff(BulletProperty bulletProperty)
+    {
+        if (!m_isDecreaseSpeed) //没有减速
+        {
+            moveSpeed -= bulletProperty.debuffValue;
+            m_decreaseTime = bulletProperty.debuffTime;
+            m_isDecreaseSpeed = true;
+            shitGo.SetActive(true);
+        }
+        else
+        {
+            m_decreaseSpeedTimeVal = 0;
+        }
+
+        
+        
     }
 
     private void Update()
@@ -93,6 +115,7 @@ public class Monster : MonoBehaviour {
         {
             DestroyMonster();
             //萝卜减血
+            m_gameController.DecreaseHP();
         }
         else
         {
@@ -107,6 +130,16 @@ public class Monster : MonoBehaviour {
                     m_reachCarrot = true;
                 }
             }
+        }
+
+        if (m_isDecreaseSpeed)
+        {
+            m_decreaseSpeedTimeVal += Time.deltaTime;
+        }
+        if (m_decreaseSpeedTimeVal >= m_decreaseTime)
+        {
+            CancelDecreaseDebuff();
+            m_decreaseSpeedTimeVal = 0;
         }
     }
 

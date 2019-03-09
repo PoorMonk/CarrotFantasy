@@ -69,13 +69,13 @@ public class BtnUpLevel : MonoBehaviour {
     private void OnBtnUpLevelClicked()
     {
         m_gameController.towerBuild.towerID = m_gameController.selectedGrid.tower.towerID;
-        m_gameController.towerBuild.towerLevel = m_gameController.selectedGrid.towerLevel;
+        m_gameController.towerBuild.towerLevel = m_gameController.selectedGrid.towerLevel + 1;
 
         m_gameController.selectedGrid.towerPersonalProperty.UpLevelTower();
 
         GameObject towerGo = m_gameController.towerBuild.GetProduct();
         towerGo.transform.SetParent(m_gameController.selectedGrid.transform);
-        towerGo.transform.position = m_gameController.selectedGrid.transform.position;
+        towerGo.transform.position = m_gameController.selectedGrid.transform.position + new Vector3(0, 0, 1);//z不加1会无法响应鼠标点击事件
         m_gameController.selectedGrid.AfterBuild();
         m_gameController.selectedGrid.HideGrid();
         m_gameController.selectedGrid = null;

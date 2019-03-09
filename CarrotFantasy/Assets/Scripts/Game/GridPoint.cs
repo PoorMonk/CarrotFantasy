@@ -78,7 +78,7 @@ public class GridPoint : MonoBehaviour {
         m_startSprite = m_gameController.GetSprite("NormalModel/Game/StartSprite");
         m_cantBuildSprite = m_gameController.GetSprite("NormalModel/Game/cantBuild");
         m_spriteRenderer.sprite = m_startSprite;
-        Tween tween = DOTween.To(() => m_spriteRenderer.color, toColor => m_spriteRenderer.color = toColor, new Color(1, 1, 1, 0.2f), 3f);
+        Tween tween = DOTween.To(() => m_spriteRenderer.color, toColor => m_spriteRenderer.color = toColor, new Color(1, 1, 1, 0.2f), 1f);
         tween.OnComplete(ChangeSpriteToGrid);
         m_towerListGo = m_gameController.towerList;
         m_handleTowerCanvas = m_gameController.handleTowerCanvas;
@@ -122,9 +122,11 @@ public class GridPoint : MonoBehaviour {
     {
         if (EventSystem.current.IsPointerOverGameObject())
         {
+            //Debug.Log("ispointover");
             return;
         }
         m_gameController.HandleGrid(this);
+        Debug.Log("OnMouseDown");
     }
 
     public void AfterBuild()
@@ -270,11 +272,10 @@ public class GridPoint : MonoBehaviour {
         GameObject go = GameController.Instance.GetGameObject(GameController.Instance.mapMaker.bigLevelID.ToString() + "/Item/" + gridState.itemID.ToString());
         go.transform.SetParent(GameController.Instance.transform);
         go.GetComponent<Item>().itemID = gridState.itemID;
-
         Vector3 createPos = transform.position - new Vector3(0, 0, 3);
         if (gridState.itemID <= 2)
         {
-            createPos += new Vector3(GameController.Instance.mapMaker.m_gridWidth, GameController.Instance.mapMaker.m_gridHeight) / 2;
+            createPos += new Vector3(GameController.Instance.mapMaker.m_gridWidth, GameController.Instance.mapMaker.m_gridHeight, 0) / 2;
         }
         else if (gridState.itemID <= 4)
         {

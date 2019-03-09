@@ -87,8 +87,12 @@
     <Compile Include="Assets\Scripts\Game\Round.cs" />
     <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\Bullet\StarBullet.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\Bullet\TShitBullet.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\Star.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Tower.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\TowerPersonalProperty.cs" />
+    <Compile Include="Assets\Scripts\Game\Tower\TShit.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\NormalManager\AudioSourceManager.cs" />

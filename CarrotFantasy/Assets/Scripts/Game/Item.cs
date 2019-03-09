@@ -31,6 +31,7 @@ public class Item : MonoBehaviour {
         m_gameController = GameController.Instance;
         m_slider = transform.Find("ItemCanvas").Find("HpSlider").GetComponent<Slider>();
         InitItem();
+        m_slider.gameObject.SetActive(false);
     }
 
     private void Update()

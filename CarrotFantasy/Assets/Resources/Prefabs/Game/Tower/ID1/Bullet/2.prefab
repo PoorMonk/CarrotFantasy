@@ -117,6 +117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTrans: {fileID: 0}
+  towerID: 1
+  towerLevel: 2
+  moveSpeed: 4
+  attackValue: 60
 --- !u!212 &212862781940713690
 SpriteRenderer:
   m_ObjectHideFlags: 1

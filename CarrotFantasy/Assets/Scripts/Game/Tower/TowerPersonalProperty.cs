@@ -30,14 +30,16 @@ public class TowerPersonalProperty : MonoBehaviour {
     public void SellTower()
     {
         m_gameController.ChangeCoin(sellPrice);
-        m_gameController.GetGameObject("BuildEffect");
+        GameObject effectGo = m_gameController.GetGameObject("BuildEffect");
+        effectGo.transform.position = transform.position;
         tower.DestroyTower();
     }
 
     public void UpLevelTower()
     {
         m_gameController.ChangeCoin(-upLevelPrice);
-        m_gameController.GetGameObject("UpLevelEffect");
+        GameObject effectGo = m_gameController.GetGameObject("UpLevelEffect");
+        effectGo.transform.position = transform.position;
         tower.DestroyTower();
     }
 
@@ -73,12 +75,15 @@ public class TowerPersonalProperty : MonoBehaviour {
         }
         if (targetTrans.gameObject.tag.Equals("Item"))
         {
-            transform.LookAt(targetTrans.position + new Vector3(0, 0, 3));
+            //调整UI的深度值让它们在同一平面，转向就不会错乱
+            transform.LookAt(targetTrans.position + new Vector3(0, 0, 3)); 
         }
         else
         {
             transform.LookAt(targetTrans.position);
         }
+
+        //手动调整塔的角度，避免出现偶发的bug（防呆）
         if (transform.eulerAngles.y == 0)
         {
             transform.eulerAngles += new Vector3(0, 90, 0);

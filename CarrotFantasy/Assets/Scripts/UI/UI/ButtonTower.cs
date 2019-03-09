@@ -40,7 +40,7 @@ public class ButtonTower : MonoBehaviour {
 
         GameObject towerGo = m_gameController.towerBuild.GetProduct();
         towerGo.transform.SetParent(m_gameController.selectedGrid.transform);
-        towerGo.transform.position = m_gameController.selectedGrid.transform.position;
+        towerGo.transform.position = m_gameController.selectedGrid.transform.position + new Vector3(0, 0, 1);
 
         GameObject buildEffect = m_gameController.GetGameObject("BuildEffect");
         buildEffect.transform.SetParent(m_gameController.transform);
@@ -58,6 +58,13 @@ public class ButtonTower : MonoBehaviour {
 
     private void UpdateIcon()
     {
-
+        if (m_gameController.coin >= price)
+        {
+            m_towerImg.sprite = m_canBuildBlueSp;
+        }
+        else
+        {
+            m_towerImg.sprite = m_cantBuildGraySp;
+        }
     }
 }

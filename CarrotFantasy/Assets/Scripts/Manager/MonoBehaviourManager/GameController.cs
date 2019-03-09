@@ -68,8 +68,10 @@ public class GameController : MonoBehaviour {
         m_gameManager = GameManager.Instance;
         //Debug.Log("GameController");
         //Debug.Log(m_gameManager);
-        currentStage = m_gameManager.m_currentStage;
-        normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
+        ///currentStage = m_gameManager.m_currentStage;
+        ///normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
+        currentStage = new Stage(10, 3, new int[] { 1, 2, 3 }, false, 0, 1, 1, true, false);
+        monsterIDList = new int[5];
         mapMaker = GetComponent<MapMaker>();
         mapMaker.InitMapMaker();
         mapMaker.LoadMap(currentStage.m_bigLevelID, currentStage.m_levelID);
@@ -79,10 +81,11 @@ public class GameController : MonoBehaviour {
         gameSpeed = 1;
         
 
-        for (int i = 0; i < m_gameManager.m_currentStage.m_towerIDList.Length; i++)
+        for (int i = 0; i < currentStage.m_towerIDList.Length; i++)
         {
             GameObject towerGo = m_gameManager.GetGameObjectResource(FactoryType.UIFactory, "Btn_TowerBuild");
-            towerGo.GetComponent<ButtonTower>().towerID = m_gameManager.m_currentStage.m_towerIDList[i];
+
+            towerGo.GetComponent<ButtonTower>().towerID = currentStage.m_towerIDList[i];
             towerGo.transform.SetParent(towerList.transform);
             towerGo.transform.localPosition = Vector3.zero;
             towerGo.transform.localScale = Vector3.one;
@@ -117,7 +120,7 @@ public class GameController : MonoBehaviour {
             }
             else
             {
-                if (!IsCreateingMonster)
+                if (IsCreateingMonster)
                 {
                     CreateMonster();
                 }
@@ -152,6 +155,7 @@ public class GameController : MonoBehaviour {
                 selectedGrid = grid;
                 selectedGrid.ShowGrid();
             }
+            //Debug.Log("Canbuild");
         }
         else
         {
@@ -200,6 +204,15 @@ public class GameController : MonoBehaviour {
     public void ChangeCoin(int coinNum)
     {
         coin += coinNum;
+    }
+
+    public void DecreaseHP()
+    {
+        carrotHP--;
+        //播放音效
+
+        //更新UI
+        mapMaker.carrot.UpdateCarrotUI();
     }
 
     private void InstantiateMonster()
