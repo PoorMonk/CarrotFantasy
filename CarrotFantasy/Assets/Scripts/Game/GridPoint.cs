@@ -126,7 +126,7 @@ public class GridPoint : MonoBehaviour {
             return;
         }
         m_gameController.HandleGrid(this);
-        Debug.Log("OnMouseDown");
+        //Debug.Log("OnMouseDown");
     }
 
     public void AfterBuild()

@@ -20,6 +20,7 @@ public class Round
     {
         m_level = level;
         m_currentRoundID = roundID;
+        //roundInfo.monsterIDList = new int[monsterIDList.Length];
         roundInfo.monsterIDList = monsterIDList;
     }
 

@@ -68,14 +68,16 @@ public class GameController : MonoBehaviour {
         m_gameManager = GameManager.Instance;
         //Debug.Log("GameController");
         //Debug.Log(m_gameManager);
-        ///currentStage = m_gameManager.m_currentStage;
-        ///normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
-        currentStage = new Stage(10, 3, new int[] { 1, 2, 3 }, false, 0, 1, 1, true, false);
-        monsterIDList = new int[5];
+        currentStage = m_gameManager.m_currentStage;
+        normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
+        //currentStage = new Stage(10, 5, new int[] { 1, 2, 3, 4, 5 }, false, 0, 1, 1, true, false);
+        //monsterIDList = new int[5];
         mapMaker = GetComponent<MapMaker>();
         mapMaker.InitMapMaker();
         mapMaker.LoadMap(currentStage.m_bigLevelID, currentStage.m_levelID);
         level = new Level(mapMaker.roundInfos.Count, mapMaker.roundInfos);
+        Debug.Log("mapMaker.roundInfos.Count: " + mapMaker.roundInfos.Count);
+        Debug.Log("mapMaker.roundInfos: " + mapMaker.roundInfos);
         monsterBuilder = new MonsterBuilder();
         towerBuild = new TowerBuild();
         gameSpeed = 1;
@@ -114,13 +116,16 @@ public class GameController : MonoBehaviour {
 #if Game
         if (!isPause)
         {
+            //Debug.Log("killMonsterNum:" + killMonsterNum);
+            //Debug.Log("monsterIDList.Length:" + monsterIDList.Length);
             if (killMonsterNum >= monsterIDList.Length)
             {
                 AddRoundNum();
             }
             else
             {
-                if (IsCreateingMonster)
+                //Debug.Log("round");
+                if (!IsCreateingMonster)
                 {
                     CreateMonster();
                 }
@@ -128,13 +133,20 @@ public class GameController : MonoBehaviour {
         }
         else //暂停
         {
+            //Debug.Log("Stop...");
             StopCreateMonster();
-            IsCreateingMonster = false;
+            IsCreateingMonster = false; 
         }
 #endif
     }
 
 #if Game
+    public void StartGame()
+    {
+        isPause = false;
+        level.HandleRound();
+    }
+
     public void HandleGrid(GridPoint grid)
     {
         if (grid.gridState.canBuild)
@@ -184,8 +196,9 @@ public class GameController : MonoBehaviour {
 
     public void CreateMonster()
     {
+        //Debug.Log("CreateMonster");
+        InvokeRepeating("InstantiateMonster", (float)1 / gameSpeed, (float)1 / gameSpeed);
         IsCreateingMonster = true;
-        InvokeRepeating("InstiantiateMonster", (float)1 / gameSpeed, (float)1 / gameSpeed);
     }
 
     private void StopCreateMonster()
@@ -217,12 +230,14 @@ public class GameController : MonoBehaviour {
 
     private void InstantiateMonster()
     {
+        Debug.Log("InstantiateMonster");
         GameObject effectGo = GetGameObject("CreateEffect");
         effectGo.transform.SetParent(transform);
         effectGo.transform.position = mapMaker.monsterPathPos[0];
         
-        if (monsterIDIndex < monsterIDList.Length)
+        if (monsterIDIndex < monsterIDList.Length) 
         {
+            Round.RoundInfo round = level.roundList[level.currentRound].roundInfo; 
             monsterBuilder.monsterID = level.roundList[level.currentRound].roundInfo.monsterIDList[monsterIDIndex];
         }
 

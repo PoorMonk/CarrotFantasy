@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTrans: {fileID: 0}
-  towerID: 1
+  towerID: 3
   towerLevel: 1
   moveSpeed: 3
   attackValue: 50

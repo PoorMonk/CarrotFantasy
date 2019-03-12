@@ -261,3 +261,7 @@ Build Setting --> Player Settings --> Scripting Define Symbols下定义
 
 原因：数据保存时是以一维数组保存的，所以如果要读取的类信息中有二维数组，要转成一维数组（List之类的），然后自己转换成对应的下标。
 
+2 游戏开始的时候，怪物ID列表一直报空
+
+原因：Json文件中保存的ID列表和类中定义的名字不一样，所以读取不到
+

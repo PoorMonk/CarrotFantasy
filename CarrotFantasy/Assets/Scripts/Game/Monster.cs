@@ -38,7 +38,7 @@ public class Monster : MonoBehaviour {
         m_slider.gameObject.SetActive(false);
         m_gameController = GameController.Instance;
         m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
-        shitGo = transform.Find("DecreaseDebuff").gameObject;
+        shitGo = transform.Find("DecreaseEffect").gameObject;
     }
 
     private void OnEnable()
@@ -100,9 +100,6 @@ public class Monster : MonoBehaviour {
         {
             m_decreaseSpeedTimeVal = 0;
         }
-
-        
-        
     }
 
     private void Update()
@@ -163,6 +160,7 @@ public class Monster : MonoBehaviour {
 
     private void DestroyMonster()
     {
+        //Debug.Log("DestroyMonster");
         if (!m_reachCarrot) //被杀死
         {
             //生成奖励、金币
