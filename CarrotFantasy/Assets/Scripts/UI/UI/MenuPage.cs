@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class MenuPage : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private NormalModelPanel normalModelPanel;
+
+    private void Awake()
+    {
+        normalModelPanel = transform.GetComponentInParent<NormalModelPanel>();
+    }
+
+    public void GoOn()
+    {
+        GameController.Instance.isPause = false;
+        transform.gameObject.SetActive(false);
+    }
+
+    public void Replay()
+    {
+        normalModelPanel.Replay();
+    }
+
+    public void ChooseOtherLevel()
+    {
+        normalModelPanel.ChooseOtherLevel();
+    }
 }

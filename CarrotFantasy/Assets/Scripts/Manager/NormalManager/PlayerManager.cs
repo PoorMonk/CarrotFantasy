@@ -22,6 +22,7 @@ public class PlayerManager
     public int milk;
     public int nest;
     public int diamands;
+    public List<MonsterPetData> monsterPetDatas;
 
     //用于测试
     public PlayerManager()

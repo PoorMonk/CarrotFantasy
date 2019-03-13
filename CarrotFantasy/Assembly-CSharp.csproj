@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\UI\UI\GameOverPage.cs" />
     <Compile Include="Assets\Scripts\UI\UI\GameWin.cs" />
     <Compile Include="Assets\Scripts\UI\UI\MenuPage.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\MonsterPet.cs" />
     <Compile Include="Assets\Scripts\UI\UI\PrizePage.cs" />
     <Compile Include="Assets\Scripts\UI\UI\ScrollViewMove.cs" />
     <Compile Include="Assets\Scripts\UI\UI\SlideScrollView.cs" />

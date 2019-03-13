@@ -228,6 +228,41 @@ public class GameController : MonoBehaviour {
         mapMaker.carrot.UpdateCarrotUI();
     }
 
+    //判断当前道具是否全部清除
+    public bool IsAllClear()
+    {
+        for (int x = 0; x < MapMaker.xCol; x++)
+        {
+            for (int y = 0; y < MapMaker.yRow; y++)
+            {
+                if (mapMaker.gridPoints[x, y].gridState.hasItem)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //获取萝卜状态
+    public int GetCarrotState()
+    {
+        int carrotState = 0;
+        if (carrotHP >= 4)
+        {
+            carrotState = 1;
+        }
+        else if (carrotHP >= 2)
+        {
+            carrotState = 2;
+        }
+        else
+        {
+            carrotState = 3;
+        }
+        return carrotState;
+    }
+
     private void InstantiateMonster()
     {
         Debug.Log("InstantiateMonster");
