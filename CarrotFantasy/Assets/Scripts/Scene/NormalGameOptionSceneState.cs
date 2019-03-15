@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NormalGameOptionSceneState : BaseSceneState {
 
@@ -22,6 +23,16 @@ public class NormalGameOptionSceneState : BaseSceneState {
 
     public override void ExitScene()
     {
+        GameNormalOptionPanel gameNormalOptionPanel = m_uiFacade.currentScenePanelDict[StringManager.GameNormalOptionPanel] as GameNormalOptionPanel;
+        if (gameNormalOptionPanel.IsInBigLevelPanel)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(4);
+        }
+        gameNormalOptionPanel.IsInBigLevelPanel = true;
         base.ExitScene();
     }
 }

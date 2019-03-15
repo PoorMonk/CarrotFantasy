@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour {
 
     public Stage m_currentStage;
 
+    public bool initPlayerManager;
+
     public static GameManager Instance { get { return _instance;} }
 
 	void Awake()
@@ -25,10 +27,11 @@ public class GameManager : MonoBehaviour {
         Debug.Log("GameManager");
 		// 各Manager初始化的时候注意顺序
 		m_playerManager = new PlayerManager();
+        m_playerManager.SavaData();
 		m_factoryManager = new FactoryManager();
 		m_audioSourceManager = new AudioSourceManager();
-		///m_uiManager = new UIManager();
-        ///m_uiManager.m_uiFacade.currentSceneState.EnterScene();
+		m_uiManager = new UIManager();
+        m_uiManager.m_uiFacade.currentSceneState.EnterScene();
 	}
 
     /// <summary>

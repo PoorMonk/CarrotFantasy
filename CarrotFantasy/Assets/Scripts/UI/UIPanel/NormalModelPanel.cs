@@ -15,7 +15,7 @@ public class NormalModelPanel : BasePanel {
     private GameObject m_prizePageGo;
 
     //引用
-    private TopPage m_topPage;
+    public TopPage m_topPage;
     private GameController m_gameController;
 
     public int totalRound;

@@ -70,14 +70,15 @@ public class GameController : MonoBehaviour {
         //Debug.Log(m_gameManager);
         currentStage = m_gameManager.m_currentStage;
         normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
+        normalModelPanel.EnterPanel();
         //currentStage = new Stage(10, 5, new int[] { 1, 2, 3, 4, 5 }, false, 0, 1, 1, true, false);
         //monsterIDList = new int[5];
         mapMaker = GetComponent<MapMaker>();
         mapMaker.InitMapMaker();
         mapMaker.LoadMap(currentStage.m_bigLevelID, currentStage.m_levelID);
         level = new Level(mapMaker.roundInfos.Count, mapMaker.roundInfos);
-        Debug.Log("mapMaker.roundInfos.Count: " + mapMaker.roundInfos.Count);
-        Debug.Log("mapMaker.roundInfos: " + mapMaker.roundInfos);
+        //Debug.Log("mapMaker.roundInfos.Count: " + mapMaker.roundInfos.Count);
+        //Debug.Log("mapMaker.roundInfos: " + mapMaker.roundInfos);
         monsterBuilder = new MonsterBuilder();
         towerBuild = new TowerBuild();
         gameSpeed = 1;
@@ -108,6 +109,8 @@ public class GameController : MonoBehaviour {
         {
             controllers[i] = GetRuntimeAnimatorController("AnimatorController/Monster/" + mapMaker.bigLevelID.ToString() + "/" + (i + 1).ToString());
         }
+        normalModelPanel.m_topPage.UpdateCoinText();
+        normalModelPanel.m_topPage.UpdateRoundText();
 #endif
     }
 
@@ -141,6 +144,11 @@ public class GameController : MonoBehaviour {
     }
 
 #if Game
+    public void ShowPrizePage()
+    {
+        normalModelPanel.ShowPrizePage();
+    }
+
     public void StartGame()
     {
         isPause = false;

@@ -127,7 +127,10 @@ public class SetPanel : BasePanel
     //重置游戏 Todo
     public void ResetGame()
     {
-
+        GameManager.Instance.initPlayerManager = true;
+        GameManager.Instance.m_playerManager.ReadData();
+        ShowStatistics();
+        CloseResetPanel();
     }
 
     public void ShowResetPanel()

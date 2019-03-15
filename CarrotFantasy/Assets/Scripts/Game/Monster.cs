@@ -170,6 +170,14 @@ public class Monster : MonoBehaviour {
             coin.transform.SetParent(transform);
 
             m_gameController.ChangeCoin(prize);
+
+            int randomNum = Random.Range(0, 100);
+            if (randomNum < 10)
+            {
+                GameObject prizeGo = GameController.Instance.GetGameObject("Prize");
+                prizeGo.transform.position = transform.position;
+
+            }
         }
         GameObject go = m_gameController.GetGameObject("DestoryEffect");
         go.transform.position = transform.position;

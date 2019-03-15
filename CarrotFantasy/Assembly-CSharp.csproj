@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Game\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\MapMaker.cs" />
     <Compile Include="Assets\Scripts\Game\Monster.cs" />
+    <Compile Include="Assets\Scripts\Game\Prize.cs" />
     <Compile Include="Assets\Scripts\Game\Round.cs" />
     <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Game\Tower\Bullet\Bullet.cs" />

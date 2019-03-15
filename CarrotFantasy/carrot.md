@@ -268,3 +268,5 @@ Build Setting --> Player Settings --> Scripting Define Symbols下定义
 
 原因：Json文件中保存的ID列表和类中定义的名字不一样，所以读取不到
 
+3 Json文件在读取自定义类信息时，类中不能包含有构造方法。
+

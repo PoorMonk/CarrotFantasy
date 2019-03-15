@@ -25,29 +25,52 @@ public class PlayerManager
     public List<MonsterPetData> monsterPetDatas;
 
     //用于测试
-    public PlayerManager()
-    {
-        adventrueModelNum = 100;
-        burriedLevelNum = 100;
-        bossModelNum = 100;
-        coin = 1000;
-        killBossNum = 10;
-        killMonsterNum = 200;
-        clearItemNum = 100;
+    //public PlayerManager()
+    //{
+    //    adventrueModelNum = 100;
+    //    burriedLevelNum = 100;
+    //    bossModelNum = 100;
+    //    coin = 1000;
+    //    killBossNum = 10;
+    //    killMonsterNum = 200;
+    //    clearItemNum = 100;
 
-        unLockedNormalModelLevelNum = new List<int>() { 2, 2, 2 };
-        unLockedNormalModelBigLevelList = new List<bool>() { true, true, true };
-        unLockedNormalModelLevelList = new List<Stage>() {
-            new Stage(10, 2, new int[]{ 1,2 }, false, 0, 1, 1, true, false),
-            new Stage(10, 2, new int[]{ 3,2 }, false, 0, 2, 1, true, false),
-            new Stage(10, 2, new int[]{ 4,2 }, false, 0, 3, 1, true, false),
-            new Stage(10, 2, new int[]{ 5,2 }, false, 0, 4, 1, true, false),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 1, 2, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 2, 2, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 3, 2, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 4, 2, true, true),
-            new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 2, true, true)
-        };
+    //    unLockedNormalModelLevelNum = new List<int>() { 2, 2, 2 };
+    //    unLockedNormalModelBigLevelList = new List<bool>() { true, true, true };
+    //    unLockedNormalModelLevelList = new List<Stage>() {
+    //        new Stage(10, 2, new int[]{ 1,2 }, false, 0, 1, 1, true, false),
+    //        new Stage(10, 2, new int[]{ 3,2 }, false, 0, 2, 1, true, false),
+    //        new Stage(10, 2, new int[]{ 4,2 }, false, 0, 3, 1, true, false),
+    //        new Stage(10, 2, new int[]{ 5,2 }, false, 0, 4, 1, true, false),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 1, true, true),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 1, 2, true, true),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 2, 2, true, true),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 3, 2, true, true),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 4, 2, true, true),
+    //        new Stage(10, 2, new int[]{ 6,2 }, false, 0, 5, 2, true, true)
+    //    };
+    //}
+
+    public void SavaData()
+    {
+        Memento memento = new Memento();
+        memento.SaveToJson();
+    }
+
+    public void ReadData()
+    {
+        Memento memento = new Memento();
+        PlayerManager playerManager = memento.LoadFormJson();
+        adventrueModelNum = playerManager.adventrueModelNum;
+        burriedLevelNum = playerManager.burriedLevelNum;
+        bossModelNum = playerManager.bossModelNum;
+        coin = playerManager.coin;
+        killBossNum = playerManager.killBossNum;
+        killMonsterNum = playerManager.killMonsterNum;
+        clearItemNum = playerManager.clearItemNum;
+
+        unLockedNormalModelLevelNum = playerManager.unLockedNormalModelLevelNum;
+        unLockedNormalModelBigLevelList = playerManager.unLockedNormalModelBigLevelList;
+        unLockedNormalModelLevelList = playerManager.unLockedNormalModelLevelList;
     }
 }

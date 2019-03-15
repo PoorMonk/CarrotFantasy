@@ -167,7 +167,7 @@ public class GameNormalLevelPanel : BasePanel
                 {
                     m_levelContentImageList[i].transform.Find("Img_Lock").gameObject.SetActive(false);
                     m_levelContentImageList[i].transform.Find("Img_BG").gameObject.SetActive(true);
-                    Image monsterImg = m_levelContentImageList[i].transform.Find("Img_Monster").GetComponent<Image>();
+                    Image monsterImg = m_levelContentImageList[i].transform.Find("Img_BG").Find("Img_Monster").GetComponent<Image>();
                     monsterImg.sprite = m_uiFacade.GetSprite("MonsterNest/Monster/Baby/" + currentBigLevelID.ToString());
                     monsterImg.SetNativeSize();
                     monsterImg.transform.localScale = new Vector3(2, 2, 2);
