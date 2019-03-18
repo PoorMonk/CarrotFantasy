@@ -28,7 +28,7 @@ public class CrystalBullet : Bullet
         if (!m_canTakeDamage || targetTrans == null) return;
         if (targetTrans.gameObject.activeSelf)
         {
-            if (targetTrans.position == null || (targetTrans.tag.Equals("Item") && GameController.Instance.targetTrans == null))
+            if (targetTrans == null || (targetTrans.tag.Equals("Item") && GameController.Instance.targetTrans == null))
             {
                 return;
             }
@@ -43,7 +43,7 @@ public class CrystalBullet : Bullet
 
     protected override void CreateEffect()
     {
-        if (targetTrans.position == null)
+        if (targetTrans == null)
         {
             return;
         }

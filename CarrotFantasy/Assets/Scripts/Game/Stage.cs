@@ -27,7 +27,7 @@ public class Stage
     //    m_levelID = levelID;
     //    m_bigLevelID = bigLevelID;
     //    m_unLocked = unLocked;
-    //    m_isRewardLevel = isReward; 
+    //    m_isRewardLevel = isReward;
     //    m_totalRound = totalRound;
     //}
 }

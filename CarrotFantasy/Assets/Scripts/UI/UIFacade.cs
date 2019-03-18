@@ -19,7 +19,7 @@ public class UIFacade
 
     private GameObject m_mask;              // 面板切换时的遮罩对象
     private Image m_maskImg;                // 遮罩图片
-    private Transform m_canvasTransform;    // 让所有Panel对象都位于Canvas之下
+    public Transform m_canvasTransform;    // 让所有Panel对象都位于Canvas之下
 
     // 场景状态
     public IBaseSceneState currentSceneState;
@@ -153,4 +153,17 @@ public class UIFacade
     {
         m_audioSourceManager.CloseOrOpenEffectMusic();
     }
+
+    //播放按钮音效
+    public void PlayButtonAudioClip()
+    {
+        m_audioSourceManager.PlayButtonAudioClip();
+    }
+
+    //播放翻书音效
+    public void PlayPagingAudioClip()
+    {
+        m_audioSourceManager.PlayPagingAudioClip();
+    }
+
 }

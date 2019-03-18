@@ -72,6 +72,7 @@ public class Monster : MonoBehaviour {
         if (currentHP <= 0)
         {
             //播放死亡音效
+            m_gameController.PlayEffectMusic("NormalModel/Monster/" + m_gameController.currentStage.m_bigLevelID.ToString() + "/" + monsterID.ToString());
             DestroyMonster();
             return;
         }
@@ -160,6 +161,10 @@ public class Monster : MonoBehaviour {
 
     private void DestroyMonster()
     {
+        if (m_gameController.targetTrans == transform)
+        {
+            m_gameController.HideSignal();
+        }
         //Debug.Log("DestroyMonster");
         if (!m_reachCarrot) //被杀死
         {
@@ -175,8 +180,8 @@ public class Monster : MonoBehaviour {
             if (randomNum < 10)
             {
                 GameObject prizeGo = GameController.Instance.GetGameObject("Prize");
-                prizeGo.transform.position = transform.position;
-
+                prizeGo.transform.position = transform.position - new Vector3(0, 0, 6);
+                m_gameController.PlayEffectMusic("NormalModel/GiftCreate");
             }
         }
         GameObject go = m_gameController.GetGameObject("DestoryEffect");

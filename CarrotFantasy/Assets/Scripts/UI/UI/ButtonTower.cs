@@ -35,6 +35,8 @@ public class ButtonTower : MonoBehaviour {
 
     private void BuildTower()
     {
+        m_gameController.PlayEffectMusic("NormalModel/Tower/TowerBulid");
+
         m_gameController.towerBuild.towerID = towerID;
         m_gameController.towerBuild.towerLevel = 1;
 

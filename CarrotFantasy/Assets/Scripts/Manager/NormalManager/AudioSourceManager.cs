@@ -58,4 +58,14 @@ public class AudioSourceManager
     {
         m_playEffectMusic = !m_playEffectMusic;
     }
+
+    public void PlayButtonAudioClip()
+    {
+        PlayEffectMusic(GameManager.Instance.m_factoryManager.m_audioClipFactory.GetSingleResource("Main/Button"));
+    }
+
+    public void PlayPagingAudioClip()
+    {
+        PlayEffectMusic(GameManager.Instance.m_factoryManager.m_audioClipFactory.GetSingleResource("Main/Paging"));
+    }
 }

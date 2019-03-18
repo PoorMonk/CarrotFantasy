@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222948333055504982}
   - component: {fileID: 114123413632093454}
   - component: {fileID: 95065720488697400}
+  - component: {fileID: 114847205222866986}
   m_Layer: 5
   m_Name: ImgHeart
   m_TagString: Untagged
@@ -74,6 +75,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114847205222866986
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1315530298252858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5174fe80883af39469d1d7bda88ed9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_animationTime: 0.433
+  m_resourcePath: ImgHeart
 --- !u!222 &222948333055504982
 CanvasRenderer:
   m_ObjectHideFlags: 1

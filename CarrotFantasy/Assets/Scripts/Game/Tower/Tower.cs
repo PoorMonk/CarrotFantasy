@@ -11,7 +11,7 @@ public class Tower : MonoBehaviour {
     private SpriteRenderer m_attackRangeSr;
     private CircleCollider2D m_circleCollider2D;
     private TowerPersonalProperty m_towerPersonalProperty;
-    
+
     private void Init()
     {
         m_circleCollider2D = GetComponent<CircleCollider2D>();
@@ -37,6 +37,10 @@ public class Tower : MonoBehaviour {
 
     private void Update()
     {
+        if (GameController.Instance.isPause || GameController.Instance.IsGameOver)
+        {
+            return;
+        }
         if (isTarget)
         {
             if (m_towerPersonalProperty.targetTrans != GameController.Instance.targetTrans)

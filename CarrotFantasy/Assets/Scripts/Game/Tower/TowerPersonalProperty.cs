@@ -29,6 +29,7 @@ public class TowerPersonalProperty : MonoBehaviour {
 
     public void SellTower()
     {
+        m_gameController.PlayEffectMusic("NormalModel/Tower/TowerSell");
         m_gameController.ChangeCoin(sellPrice);
         GameObject effectGo = m_gameController.GetGameObject("BuildEffect");
         effectGo.transform.position = transform.position;
@@ -37,6 +38,7 @@ public class TowerPersonalProperty : MonoBehaviour {
 
     public void UpLevelTower()
     {
+        m_gameController.PlayEffectMusic("NormalModel/Tower/TowerUpdata");
         m_gameController.ChangeCoin(-upLevelPrice);
         GameObject effectGo = m_gameController.GetGameObject("UpLevelEffect");
         effectGo.transform.position = transform.position;
@@ -59,7 +61,7 @@ public class TowerPersonalProperty : MonoBehaviour {
 
     protected virtual void Update()
     {
-        if (m_gameController.isPause || targetTrans == null)
+        if (m_gameController.isPause || targetTrans == null || m_gameController.IsGameOver)
         {
             return;
         }
@@ -89,8 +91,8 @@ public class TowerPersonalProperty : MonoBehaviour {
         {
             transform.LookAt(targetTrans.position + new Vector3(0, 0, 1));
         }
-        //Debug.Log("targetTrans.z: " + targetTrans.position.z);
-        //Debug.Log("transform.z: " + transform.position.z);
+        Debug.Log("targetTrans.z: " + targetTrans.position.z);
+        Debug.Log("transform.z: " + transform.position.z);
 
         //手动调整塔的角度，避免出现偶发的bug（防呆）
         if (transform.eulerAngles.y == 0)
@@ -106,6 +108,7 @@ public class TowerPersonalProperty : MonoBehaviour {
             return;
         }
         animator.Play("Attack");
+        m_gameController.PlayEffectMusic("NormalModel/Tower/Attack/" + tower.towerID.ToString());
         bulletGo = m_gameController.GetGameObject("Tower/ID" + tower.towerID.ToString() + "/Bullet/" + towerLevel.ToString());
         bulletGo.transform.position = transform.position;
         bulletGo.GetComponent<Bullet>().targetTrans = targetTrans;

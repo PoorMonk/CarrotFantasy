@@ -369,6 +369,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114210825752115900, guid: 6afe49adb59e3694a86846da11428fc9,
+        type: 2}
+      propertyPath: initPlayerManager
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 82809467302626642, guid: 6afe49adb59e3694a86846da11428fc9,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 82110368855725072, guid: 6afe49adb59e3694a86846da11428fc9,
+        type: 2}
+      propertyPath: m_Volume
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afe49adb59e3694a86846da11428fc9, type: 2}
   m_IsPrefabAsset: 0

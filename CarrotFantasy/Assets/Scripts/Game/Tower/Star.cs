@@ -14,7 +14,7 @@ public class Star : TowerPersonalProperty
     // Update is called once per frame
     protected override void Update()
     {
-        if (GameController.Instance.isPause || targetTrans == null)
+        if (GameController.Instance.isPause || targetTrans == null || GameController.Instance.IsGameOver)
         {
             return;
         }

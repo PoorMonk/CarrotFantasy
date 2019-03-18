@@ -84,6 +84,7 @@ public class ScrollViewMove : MonoBehaviour, IBeginDragHandler, IEndDragHandler 
         }
 
         DOTween.To(()=>m_scrollRect.horizontalNormalizedPosition, lerpValue=>m_scrollRect.horizontalNormalizedPosition=lerpValue, m_lastProportion, 0.3f).SetEase(Ease.Linear);
+        GameManager.Instance.m_audioSourceManager.PlayPagingAudioClip();
     }
 
     public void Init()

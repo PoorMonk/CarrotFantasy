@@ -13,6 +13,7 @@ public class MenuPage : MonoBehaviour {
 
     public void GoOn()
     {
+        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
         GameController.Instance.isPause = false;
         transform.gameObject.SetActive(false);
     }

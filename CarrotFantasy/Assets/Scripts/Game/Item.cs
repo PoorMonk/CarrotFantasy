@@ -85,6 +85,8 @@ public class Item : MonoBehaviour {
         m_gameController.PushGameObjectToFactory(m_gameController.mapMaker.bigLevelID.ToString() + "/Item/" + itemID, gameObject);
         gridPoint.gridState.hasItem = false;
         InitItem();
+
+        m_gameController.PlayEffectMusic("NormalModel/Item");
     }
 
     private void InitItem()

@@ -22,7 +22,7 @@ public class PlayerManager
     public int milk;
     public int nest;
     public int diamands;
-    public List<MonsterPetData> monsterPetDatas;
+    public List<MonsterPetData> monsterPetDatas; 
 
     //用于测试
     //public PlayerManager()
@@ -36,7 +36,7 @@ public class PlayerManager
     //    clearItemNum = 100;
 
     //    unLockedNormalModelLevelNum = new List<int>() { 2, 2, 2 };
-    //    unLockedNormalModelBigLevelList = new List<bool>() { true, true, true };
+    //    unLockedNormalModelBigLevelList = new List<bool>() { true, false, false };
     //    unLockedNormalModelLevelList = new List<Stage>() {
     //        new Stage(10, 2, new int[]{ 1,2 }, false, 0, 1, 1, true, false),
     //        new Stage(10, 2, new int[]{ 3,2 }, false, 0, 2, 1, true, false),
@@ -72,5 +72,11 @@ public class PlayerManager
         unLockedNormalModelLevelNum = playerManager.unLockedNormalModelLevelNum;
         unLockedNormalModelBigLevelList = playerManager.unLockedNormalModelBigLevelList;
         unLockedNormalModelLevelList = playerManager.unLockedNormalModelLevelList;
+
+        cookies = playerManager.cookies;
+        milk = playerManager.milk;
+        nest = playerManager.nest;
+        diamands = playerManager.diamands;
+        monsterPetDatas = playerManager.monsterPetDatas;
     }
 }

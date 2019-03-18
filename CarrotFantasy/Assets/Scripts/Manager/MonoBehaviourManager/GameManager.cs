@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
         Debug.Log("GameManager");
 		// 各Manager初始化的时候注意顺序
 		m_playerManager = new PlayerManager();
-        m_playerManager.SavaData();
+        m_playerManager.ReadData();
 		m_factoryManager = new FactoryManager();
 		m_audioSourceManager = new AudioSourceManager();
 		m_uiManager = new UIManager();

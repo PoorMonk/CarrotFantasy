@@ -116,6 +116,7 @@ public class SlideScrollView : MonoBehaviour, IBeginDragHandler, IEndDragHandler
         }
         DOTween.To(() => m_contentTrans.localPosition, lerpValue => m_contentTrans.localPosition = lerpValue, m_currentContentLocalPos + new Vector3(moveDistance, 0, 0), 0.3f).SetEase(Ease.Linear);
         m_currentContentLocalPos += new Vector3(moveDistance, 0, 0);
+        GameManager.Instance.m_audioSourceManager.PlayPagingAudioClip();
     }
 
     //设置Content的大小

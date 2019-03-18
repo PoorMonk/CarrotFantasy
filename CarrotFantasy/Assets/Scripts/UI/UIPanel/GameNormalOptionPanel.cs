@@ -19,10 +19,12 @@ public class GameNormalOptionPanel : BasePanel
             m_uiFacade.currentScenePanelDict[StringManager.GameNormalBigLevelPanel].EnterPanel();
         }
         IsInBigLevelPanel = true;
+        m_uiFacade.PlayButtonAudioClip();
     }
 
     public void OnHelpBtnClicked()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_uiFacade.currentScenePanelDict[StringManager.HelpPanel].EnterPanel();
     }
 }

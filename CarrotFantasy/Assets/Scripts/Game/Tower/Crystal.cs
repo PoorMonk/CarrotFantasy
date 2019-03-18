@@ -7,6 +7,7 @@ public class Crystal : TowerPersonalProperty {
     private float m_distance;
     private float m_bulletWidth;
     private float m_bulletHeight;
+    private AudioSource m_audioSource;
 
     private void OnEnable()
     {
@@ -24,12 +25,14 @@ public class Crystal : TowerPersonalProperty {
         base.Start();
         bulletGo = GameController.Instance.GetGameObject("Tower/ID" + tower.towerID.ToString() + "/Bullet/" + towerLevel.ToString());
         bulletGo.SetActive(false);
-	}
+        m_audioSource = GetComponent<AudioSource>();
+        m_audioSource.clip = GameController.Instance.GetAudioClip("NormalModel/Tower/Attack/" + tower.towerID.ToString());
+    }
 	
 	// Update is called once per frame
 	protected override void Update ()
     {
-        if (GameController.Instance.isPause || targetTrans == null)
+        if (GameController.Instance.isPause || targetTrans == null || GameController.Instance.IsGameOver)
         {
             if (targetTrans == null)
             {
@@ -46,6 +49,13 @@ public class Crystal : TowerPersonalProperty {
         {
             return;
         }
+
+        if (!m_audioSource.isPlaying)
+        {
+            m_audioSource.Play();
+        }
+        
+        animator.Play("Attack");
         if (targetTrans.tag.Equals("Item"))
         {
             m_distance = Vector3.Distance(transform.position, targetTrans.position + new Vector3(0, 0, 4));

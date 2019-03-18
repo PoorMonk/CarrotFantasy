@@ -20,9 +20,11 @@ public class NormalModelPanel : BasePanel {
 
     public int totalRound;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         m_gameController = GameController.Instance;
+        Debug.Log("gamecontroller: " + m_gameController);
         m_topPageGo = transform.Find("Img_TopPage").gameObject;
         m_gameoverPageGo = transform.Find("GameOverPage").gameObject;
         m_gameWinPageGo = transform.Find("GameWinPage").gameObject;
@@ -33,20 +35,22 @@ public class NormalModelPanel : BasePanel {
         m_topPage = m_topPageGo.GetComponent<TopPage>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        m_startGameImg.SetActive(true);
-        InvokeRepeating("PlayAudio", 0, 1);
-        Invoke("StartGame", 3);
+        InvokeRepeating("PlayAudio", 0.5f, 1);
+        Invoke("StartGame", 3.5f);
     }
 
+    //播放开始游戏倒计时声音
     private void PlayAudio()
     {
-
+        m_startGameImg.SetActive(true);
+        GameController.Instance.PlayEffectMusic("NormalModel/CountDown");
     }
 
     private void StartGame()
     {
+        GameController.Instance.PlayEffectMusic("NormalModel/GO");
         m_gameController.StartGame();
         m_startGameImg.SetActive(false);
         CancelInvoke();
@@ -54,6 +58,11 @@ public class NormalModelPanel : BasePanel {
 
     public override void EnterPanel()
     {
+        //Debug.Log("EnterPanel");
+        if (m_gameController == null)
+        {
+            m_gameController = GameController.Instance;
+        }
         base.EnterPanel();
         totalRound = m_gameController.currentStage.m_totalRound;
         m_topPageGo.SetActive(true);
@@ -69,20 +78,27 @@ public class NormalModelPanel : BasePanel {
     public void ShowPrizePage()
     {
         m_prizePageGo.SetActive(true);
+        GameController.Instance.isPause = true;
     }
 
     public void ClosePrizePage()
     {
+        m_uiFacade.PlayButtonAudioClip();
+        GameController.Instance.isPause = false;
         m_prizePageGo.SetActive(false);
     }
 
     public void ShowMenuPage()
     {
+        m_uiFacade.PlayButtonAudioClip();
+        GameController.Instance.isPause = true;
         m_menuPageGo.SetActive(true);
     }
 
     public void CloseMenuPage()
     {
+        m_uiFacade.PlayButtonAudioClip();
+        GameController.Instance.isPause = false;
         m_menuPageGo.SetActive(false);
     }
 
@@ -114,6 +130,8 @@ public class NormalModelPanel : BasePanel {
         m_gameWinPageGo.SetActive(true);
         m_gameController.IsGameOver = false;
         GameManager.Instance.m_playerManager.adventrueModelNum++;
+
+        GameController.Instance.PlayEffectMusic("NormalModel/Perfect");
     }
 
     public void ShowRoundText(Text roundText)
@@ -136,10 +154,12 @@ public class NormalModelPanel : BasePanel {
         UpdatePlayerManagerData();
         m_gameoverPageGo.SetActive(true);
         m_gameController.IsGameOver = false;
+        GameController.Instance.PlayEffectMusic("NormalModel/Lose");
     }
 
     public void ShowFinalWave()
     {
+        GameController.Instance.PlayEffectMusic("NormalModel/Finalwave");
         m_finalWaveImg.SetActive(false);
         Invoke("CloseFinalWave", 0.508f);
     }
@@ -160,7 +180,7 @@ public class NormalModelPanel : BasePanel {
     //重置游戏
     private void ResetGame()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(3);
         ResetUI();
         gameObject.SetActive(true);
     }
@@ -184,6 +204,7 @@ public class NormalModelPanel : BasePanel {
 
     public void ChooseOtherLevel()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_gameController.IsGameOver = false;
         UpdatePlayerManagerData();
         Invoke("ToOtherScene", 2f);

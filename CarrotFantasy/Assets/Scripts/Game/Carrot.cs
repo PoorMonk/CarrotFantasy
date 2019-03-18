@@ -49,6 +49,8 @@ public class Carrot : MonoBehaviour {
         if (GameController.Instance.carrotHP >= 10)
         {
             m_animator.Play("Touch");
+            int randomNum = Random.Range(1, 4);
+            GameController.Instance.PlayEffectMusic("NormalModel/Carrot/" + randomNum.ToString());
         }
     }
 
@@ -67,6 +69,8 @@ public class Carrot : MonoBehaviour {
         else
         {
             //游戏结束
+            GameController.Instance.normalModelPanel.ShowGameOverPage();
+            GameController.Instance.IsGameOver = true;
         }
     }
 }

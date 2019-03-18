@@ -27,7 +27,7 @@ public class TopPage : MonoBehaviour {
     {
         m_normalModelPanel = transform.GetComponentInParent<NormalModelPanel>();
         m_coinTxt = transform.Find("Tex_Coin").GetComponent<Text>();
-        m_roundCount = transform.Find("Emp_TotalCount").Find("Image").Find("Text_CurrentCount").GetComponent<Text>();
+        m_roundCount = transform.Find("Emp_TotalCount").Find("Text_CurrentCount").GetComponent<Text>();
         m_totalRound = transform.Find("Emp_TotalCount").Find("Text_TotalCount").GetComponent<Text>();
         m_gameSpeedImg = transform.Find("Btn_Speed").GetComponent<Image>();
         m_pauseImg = transform.Find("Btn_Pause").GetComponent<Image>();
@@ -38,6 +38,7 @@ public class TopPage : MonoBehaviour {
 
     private void OnEnable()
     {
+        //Debug.Log("Top Enable");
         UpdateCoinText();
         m_totalRound.text = m_normalModelPanel.totalRound.ToString();
         m_pauseImg.sprite = pauseSps[0];
@@ -50,6 +51,8 @@ public class TopPage : MonoBehaviour {
 
     public void UpdateCoinText()
     {
+        //Debug.Log(m_coinTxt); 
+        //Debug.Log("coin:" + GameController.Instance);
         m_coinTxt.text = GameController.Instance.coin.ToString();
     }
 
@@ -60,6 +63,7 @@ public class TopPage : MonoBehaviour {
 
     public void ChangeGameSpeed()
     {
+        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
         m_isNormalSpeed = !m_isNormalSpeed;
         if (m_isNormalSpeed)
         {
@@ -75,6 +79,7 @@ public class TopPage : MonoBehaviour {
 
     public void PauseGame()
     {
+        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
         m_isPause = !m_isPause;
         GameController.Instance.isPause = m_isPause;
         if (m_isPause)
@@ -93,6 +98,7 @@ public class TopPage : MonoBehaviour {
 
     public void ShowMenu()
     {
+        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
         m_normalModelPanel.ShowMenuPage();
     }
 }

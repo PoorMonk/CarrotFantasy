@@ -51,6 +51,7 @@ public class MainPanel : BasePanel {
 
     public void OnCloseBtnClicked()
     {
+        GameManager.Instance.m_playerManager.SavaData();
         Application.Quit();
     }
 
@@ -64,16 +65,19 @@ public class MainPanel : BasePanel {
     {
         m_uiFacade.currentScenePanelDict[StringManager.GameLoadPanel].EnterPanel();
         m_uiFacade.ChangeSceneState(new NormalGameOptionSceneState(m_uiFacade));
+        m_uiFacade.PlayButtonAudioClip();
     }
 
     public void EnterBossMode()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_uiFacade.currentScenePanelDict[StringManager.GameLoadPanel].EnterPanel();
         m_uiFacade.ChangeSceneState(new BossGameOptionSceneState(m_uiFacade));
     }
 
     public void EnterMonsterNest()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_uiFacade.currentScenePanelDict[StringManager.GameLoadPanel].EnterPanel();
         m_uiFacade.ChangeSceneState(new MonsterNestSceneState(m_uiFacade));
     }
@@ -82,6 +86,7 @@ public class MainPanel : BasePanel {
     {
         m_exitTween = mainPanelTween[0];
         m_uiFacade.currentScenePanelDict[StringManager.SetPanel].EnterPanel();
+        m_uiFacade.PlayButtonAudioClip();
         ExitPanel();
     }
 
@@ -89,6 +94,7 @@ public class MainPanel : BasePanel {
     {
         m_exitTween = mainPanelTween[1];
         m_uiFacade.currentScenePanelDict[StringManager.HelpPanel].EnterPanel();
+        m_uiFacade.PlayButtonAudioClip();
         ExitPanel();
     }
 

@@ -30,10 +30,12 @@ public class Level
         if (currentRound >= totalRound)
         {
             //胜利
+            GameController.Instance.normalModelPanel.ShowGameWinPage();
         }
         else if (currentRound == totalRound - 1)
         {
             //处理最后一波怪的音乐
+            GameController.Instance.normalModelPanel.ShowFinalWave();
         }
         else
         {

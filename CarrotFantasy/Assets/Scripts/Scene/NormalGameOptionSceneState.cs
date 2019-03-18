@@ -30,7 +30,7 @@ public class NormalGameOptionSceneState : BaseSceneState {
         }
         else
         {
-            SceneManager.LoadScene(4);
+            SceneManager.LoadScene(3);
         }
         gameNormalOptionPanel.IsInBigLevelPanel = true;
         base.ExitScene();

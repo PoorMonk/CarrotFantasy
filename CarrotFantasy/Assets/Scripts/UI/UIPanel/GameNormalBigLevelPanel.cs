@@ -15,11 +15,13 @@ public class GameNormalBigLevelPanel : BasePanel
 
     public void OnLeftBtnClicked()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_slideScrollView.OnLeftPageBtnClicked();
     }
 
     public void OnRightBtnClicked()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_slideScrollView.OnRightPageBtnClicked();
     }
 
@@ -29,7 +31,7 @@ public class GameNormalBigLevelPanel : BasePanel
         m_playerManager = m_uiFacade.m_playerManager;
         bigLevelPage = new Transform[bigLevelPageCount];
         m_slideScrollView = transform.Find("Scroll View").GetComponent<SlideScrollView>();
-        for (int i = 0; i < bigLevelPageCount; i++)
+        for (int i = 0; i < bigLevelPageCount; i++) 
         {
             bigLevelPage[i] = bigLevelContentTrans.GetChild(i);
             ShowBigLevelInfo(m_playerManager.unLockedNormalModelBigLevelList[i],
@@ -77,6 +79,7 @@ public class GameNormalBigLevelPanel : BasePanel
             {
                 theBigLevelButton.onClick.AddListener(() =>
                 {
+                    m_uiFacade.PlayButtonAudioClip();
                     //离开大关卡页面
                     m_uiFacade.currentScenePanelDict[StringManager.GameNormalBigLevelPanel].ExitPanel();
                     //进入小关卡

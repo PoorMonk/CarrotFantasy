@@ -12,9 +12,11 @@ public class NormalModelSceneState : BaseSceneState {
         m_uiFacade.AddPanelToDict (StringManager.GameLoadPanel);
         m_uiFacade.AddPanelToDict (StringManager.NormalModelPanel);
         base.EnterScene ();
+        GameManager.Instance.m_audioSourceManager.CloseBGMusic();
     }
 
     public override void ExitScene () {
         base.ExitScene ();
+        GameManager.Instance.m_audioSourceManager.OpenBGMusic();
     }
 }

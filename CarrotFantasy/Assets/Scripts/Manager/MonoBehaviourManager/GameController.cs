@@ -66,7 +66,7 @@ public class GameController : MonoBehaviour {
 #if Game
         _instance = this;
         m_gameManager = GameManager.Instance;
-        //Debug.Log("GameController");
+        Debug.Log("GameController");
         //Debug.Log(m_gameManager);
         currentStage = m_gameManager.m_currentStage;
         normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
@@ -111,6 +111,7 @@ public class GameController : MonoBehaviour {
         }
         normalModelPanel.m_topPage.UpdateCoinText();
         normalModelPanel.m_topPage.UpdateRoundText();
+        isPause = true;
 #endif
     }
 
@@ -163,17 +164,20 @@ public class GameController : MonoBehaviour {
             {
                 selectedGrid = grid;
                 selectedGrid.ShowGrid();
+                PlayEffectMusic("NormalModel/Grid/GridSelect");
             }
             else if (grid == selectedGrid) //点击同一个格子
             {
                 grid.HideGrid();
                 selectedGrid = null;
+                PlayEffectMusic("NormalModel/Grid/GridDeselect");
             }
             else if (grid != selectedGrid)
             {
                 selectedGrid.HideGrid();
                 selectedGrid = grid;
                 selectedGrid.ShowGrid();
+                PlayEffectMusic("NormalModel/Grid/GridSelect");
             }
             //Debug.Log("Canbuild");
         }
@@ -181,6 +185,7 @@ public class GameController : MonoBehaviour {
         {
             grid.HideGrid();
             grid.ShowCantBuild();
+            PlayEffectMusic("NormalModel/Grid/SelectFault");
             if (selectedGrid != null)
             {
                 selectedGrid.HideGrid();
@@ -190,6 +195,7 @@ public class GameController : MonoBehaviour {
 
     public void ShowSignal()
     {
+        PlayEffectMusic("NormalModel/Tower/ShootSelect");
         targetSignal.transform.position = targetTrans.position + new Vector3(0, mapMaker.m_gridHeight / 2, 0);
         targetSignal.transform.SetParent(targetTrans);
         targetSignal.SetActive(true);
@@ -220,17 +226,21 @@ public class GameController : MonoBehaviour {
         killMonsterNum = 0;
         level.AddRoundNum();
         level.HandleRound();
+        normalModelPanel.UpdatePanel();
     }
 
     public void ChangeCoin(int coinNum)
     {
         coin += coinNum;
+        normalModelPanel.UpdatePanel();
     }
 
     public void DecreaseHP()
     {
         carrotHP--;
+
         //播放音效
+        PlayEffectMusic("NormalModel/Carrot/Crash");
 
         //更新UI
         mapMaker.carrot.UpdateCarrotUI();
@@ -273,7 +283,13 @@ public class GameController : MonoBehaviour {
 
     private void InstantiateMonster()
     {
-        Debug.Log("InstantiateMonster");
+        PlayEffectMusic("NormalModel/Monster/Create");
+        if (monsterIDIndex >= monsterIDList.Length)
+        {
+            StopCreateMonster();
+            return;
+        }
+        //Debug.Log("InstantiateMonster");
         GameObject effectGo = GetGameObject("CreateEffect");
         effectGo.transform.SetParent(transform);
         effectGo.transform.position = mapMaker.monsterPathPos[0];
@@ -288,10 +304,7 @@ public class GameController : MonoBehaviour {
         monsterGo.transform.SetParent(transform);
         monsterGo.transform.position = mapMaker.monsterPathPos[0];
         monsterIDIndex++;
-        if (monsterIDIndex >= monsterIDList.Length)
-        {
-            StopCreateMonster();
-        }
+        
     }
 
     public Sprite GetSprite(string resourcePath)
@@ -317,5 +330,11 @@ public class GameController : MonoBehaviour {
     public void PushGameObjectToFactory(string resourcePath, GameObject go)
     {
         m_gameManager.PushGameObjectToFactory(FactoryType.GameFactory, resourcePath, go);
+    }
+
+    //播放特效音
+    public void PlayEffectMusic(string audioClipPath)
+    {
+        m_gameManager.m_audioSourceManager.PlayEffectMusic(GetAudioClip(audioClipPath));
     }
 }

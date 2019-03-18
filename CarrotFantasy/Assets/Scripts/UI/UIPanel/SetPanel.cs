@@ -40,13 +40,18 @@ public class SetPanel : BasePanel
 
     public void ShowOptionPage()
     {
-        m_optionPage.SetActive(true);
+        if (!m_optionPage.activeSelf)
+        {
+            m_optionPage.SetActive(true);
+            m_uiFacade.PlayButtonAudioClip();
+        }
         m_producerPage.SetActive(false);
         m_statisticsPage.SetActive(false);
     }
 
     public void ShowStatisticsPage()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_optionPage.SetActive(false);
         m_producerPage.SetActive(false);
         m_statisticsPage.SetActive(true);
@@ -55,6 +60,7 @@ public class SetPanel : BasePanel
 
     public void ShowProducerPage()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_optionPage.SetActive(false);
         m_producerPage.SetActive(true);
         m_statisticsPage.SetActive(false);
@@ -73,6 +79,7 @@ public class SetPanel : BasePanel
 
     public override void ExitPanel()
     {
+        m_uiFacade.PlayButtonAudioClip();
         m_setPanelTween.PlayBackwards();
         m_uiFacade.currentScenePanelDict[StringManager.MainPanel].EnterPanel();
         InitPanel();
@@ -95,6 +102,7 @@ public class SetPanel : BasePanel
         {
             m_btnBgMusicImg.sprite = btnSprites[3];
         }
+        m_uiFacade.PlayButtonAudioClip();
     }
 
     public void CloseOrOpenEffectMusic()
@@ -109,6 +117,7 @@ public class SetPanel : BasePanel
         {
             m_btnAudioImg.sprite = btnSprites[1];
         }
+        m_uiFacade.PlayButtonAudioClip();
     }
 
     //数据显示 Todo
@@ -131,6 +140,7 @@ public class SetPanel : BasePanel
         GameManager.Instance.m_playerManager.ReadData();
         ShowStatistics();
         CloseResetPanel();
+        m_uiFacade.PlayButtonAudioClip();
     }
 
     public void ShowResetPanel()
@@ -141,5 +151,6 @@ public class SetPanel : BasePanel
     public void CloseResetPanel()
     {
         m_panelReset.SetActive(false);
+        m_uiFacade.PlayButtonAudioClip();
     }
 }
