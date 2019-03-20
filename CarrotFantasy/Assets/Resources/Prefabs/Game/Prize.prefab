@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4740148135967764}
   - component: {fileID: 212961202370165764}
   - component: {fileID: 61742731360267442}
+  - component: {fileID: 114680988674299686}
   m_Layer: 0
   m_Name: Prize
   m_TagString: Untagged
@@ -66,6 +67,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 0.74}
   m_EdgeRadius: 0
+--- !u!114 &114680988674299686
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1133085513933558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3806c69b396266e41a2779f52ddd41e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212961202370165764
 SpriteRenderer:
   m_ObjectHideFlags: 1

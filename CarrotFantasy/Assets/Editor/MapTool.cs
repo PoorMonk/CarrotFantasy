@@ -30,12 +30,14 @@ public class MapTool : Editor {
             
             if (currentIndex != selectedIndex) //当前选择对象是否改变
             {
-                //Debug.Log("currentIndex:" + currentIndex);
-                //Debug.Log("selectedIndex:" + selectedIndex);
+                Debug.Log("currentIndex:" + currentIndex);
+                Debug.Log("selectedIndex:" + selectedIndex);
                 selectedIndex = currentIndex;
 
                 //实例化地图
                 mapMaker.InitMap();
+
+                //ClearList(); //清除原来的关卡信息
 
                 //加载当前选择的level文件
                 mapMaker.LoadLevelInfo(mapMaker.LoadLevelInfoFromJson(fileNameList[selectedIndex]));
@@ -76,6 +78,7 @@ public class MapTool : Editor {
     //清除文件列表
     private void ClearList()
     {
+        Debug.Log("ClearList...");
         fileList.Clear();
         selectedIndex = -1;
     }
@@ -83,7 +86,7 @@ public class MapTool : Editor {
     //具体读取关卡列表
     private List<FileInfo> GetStageFiles()
     {
-        string[] files = Directory.GetFiles(Application.dataPath + "/Resources/Json/Level/", "*.json");
+        string[] files = Directory.GetFiles(Application.streamingAssetsPath + "/Json/Level/", "*.json");
         List<FileInfo> fList = new List<FileInfo>();
         for (int i = 0; i < files.Length; i++)
         {

@@ -21,10 +21,12 @@ public class BtnUpLevel : MonoBehaviour {
             return;
         }
         UpdateUIView();
+        m_gameController = GameController.Instance;
     }
 
     // Use this for initialization
     void Start () {
+#if Game
         m_gameController = GameController.Instance;
         m_button = GetComponent<Button>();
         m_image = GetComponent<Image>();
@@ -33,6 +35,7 @@ public class BtnUpLevel : MonoBehaviour {
         m_reachHighestLevelSp = m_gameController.GetSprite("NormalModel/Game/Tower/Btn_ReachHighestLevel");
         m_button.onClick.AddListener(OnBtnUpLevelClicked);
         m_text = transform.Find("Text").GetComponent<Text>();
+#endif
     }
 
     // Update is called once per frame
@@ -76,8 +79,10 @@ public class BtnUpLevel : MonoBehaviour {
         GameObject towerGo = m_gameController.towerBuild.GetProduct();
         towerGo.transform.SetParent(m_gameController.selectedGrid.transform);
         towerGo.transform.position = m_gameController.selectedGrid.transform.position + new Vector3(0, 0, 1);//z不加1会无法响应鼠标点击事件
+#if Game
         m_gameController.selectedGrid.AfterBuild();
         m_gameController.selectedGrid.HideGrid();
+#endif
         m_gameController.selectedGrid = null;
     }
 }

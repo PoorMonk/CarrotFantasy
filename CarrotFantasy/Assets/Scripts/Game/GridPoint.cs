@@ -56,7 +56,7 @@ public class GridPoint : MonoBehaviour {
     private void Awake()
     {
 #if Tool
-        gridSprite = Resources.Load<Sprite>("Pictures/NormalModel/Game/Grid");
+        m_gridSprite = Resources.Load<Sprite>("Pictures/NormalModel/Game/Grid");
         monsterPathSprite = Resources.Load<Sprite>("Pictures/NormalModel/Game/1/Monster/6-1");
 
         itemPrefabs = new GameObject[10];
@@ -294,7 +294,7 @@ public class GridPoint : MonoBehaviour {
         m_spriteRenderer.enabled = true;
         gridState.itemID = -1;
 #if Tool
-        spriteRenderer.sprite = gridSprite;
+        m_spriteRenderer.sprite = m_gridSprite;
         Destroy(currentItem);
 #endif
 
@@ -311,17 +311,17 @@ public class GridPoint : MonoBehaviour {
         if (Input.GetKey(KeyCode.P)) //怪物路点
         {
             gridState.canBuild = false;
-            spriteRenderer.enabled = true;
+            m_spriteRenderer.enabled = true;
             gridState.isMonsterPoint = !gridState.isMonsterPoint;
             if (gridState.isMonsterPoint)
             {
                 MapMaker.Instance.monsterPath.Add(gridIndex);
-                spriteRenderer.sprite = monsterPathSprite;
+                m_spriteRenderer.sprite = monsterPathSprite;
             }
             else
             {
                 MapMaker.Instance.monsterPath.Remove(gridIndex);
-                spriteRenderer.sprite = gridSprite;
+                m_spriteRenderer.sprite = m_gridSprite;
                 gridState.canBuild = true;
             }
         }
@@ -352,11 +352,11 @@ public class GridPoint : MonoBehaviour {
             gridState.canBuild = !gridState.canBuild;
             if (gridState.canBuild)
             {
-                spriteRenderer.enabled = true;
+                m_spriteRenderer.enabled = true;
             }
             else
             {
-                spriteRenderer.enabled = false;
+                m_spriteRenderer.enabled = false;
             }
         }
     }
@@ -381,8 +381,8 @@ public class GridPoint : MonoBehaviour {
     {
         if (gridState.canBuild)
         {
-            spriteRenderer.sprite = gridSprite;
-            spriteRenderer.enabled = true;
+            m_spriteRenderer.sprite = m_gridSprite;
+            m_spriteRenderer.enabled = true;
             if (gridState.hasItem)
             {
                 CreateItem();
@@ -392,11 +392,11 @@ public class GridPoint : MonoBehaviour {
         {
             if (gridState.isMonsterPoint)
             {
-                spriteRenderer.sprite = monsterPathSprite;
+                m_spriteRenderer.sprite = monsterPathSprite;
             }
             else
             {
-                spriteRenderer.enabled = false;
+                m_spriteRenderer.enabled = false;
             }
         }
     }

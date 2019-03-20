@@ -91,8 +91,8 @@ public class TowerPersonalProperty : MonoBehaviour {
         {
             transform.LookAt(targetTrans.position + new Vector3(0, 0, 1));
         }
-        Debug.Log("targetTrans.z: " + targetTrans.position.z);
-        Debug.Log("transform.z: " + transform.position.z);
+        //Debug.Log("targetTrans.z: " + targetTrans.position.z);
+        //Debug.Log("transform.z: " + transform.position.z);
 
         //手动调整塔的角度，避免出现偶发的bug（防呆）
         if (transform.eulerAngles.y == 0)

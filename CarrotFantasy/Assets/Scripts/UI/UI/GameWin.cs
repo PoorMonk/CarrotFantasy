@@ -19,6 +19,7 @@ public class GameWin : MonoBehaviour {
         m_roundCountTxt = transform.Find("Img_Info").Find("Text_CurrentCount").GetComponent<Text>();
         m_totalRoundTxt = transform.Find("Img_Info").Find("Text_TotalCount").GetComponent<Text>();
         m_carrotImg = transform.Find("Img_Carrot").GetComponent<Image>();
+        carrotSprites = new Sprite[3];
         for (int i = 0; i < 3; i++)
         {
             carrotSprites[i] = GameController.Instance.GetSprite("GameOption/Normal/Level/Carrot_" + (i + 1).ToString());

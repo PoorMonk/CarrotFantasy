@@ -18,6 +18,7 @@ public class BtnSellTower : MonoBehaviour {
         }
         m_price = m_gameController.selectedGrid.towerPersonalProperty.sellPrice;
         m_text.text = m_price.ToString();
+        m_gameController = GameController.Instance;
     }
 
     // Use this for initialization
@@ -38,7 +39,9 @@ public class BtnSellTower : MonoBehaviour {
         m_gameController.selectedGrid.towerPersonalProperty.SellTower();
         m_gameController.selectedGrid.InitGrid();
         m_gameController.selectedGrid.m_handleTowerCanvas.SetActive(false);
+#if Game
         m_gameController.selectedGrid.HideGrid();
+#endif
         m_gameController.selectedGrid = null;
     }
 }

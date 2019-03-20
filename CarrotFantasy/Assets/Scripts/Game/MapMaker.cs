@@ -233,7 +233,7 @@ public class MapMaker : MonoBehaviour {
     public void SaveLevelfileToJson()
     {
         LevelInfo levelInfo = CreateLevelInfo();
-        string filePath = Application.dataPath + "/Resources/Json/Level/Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json";
+        string filePath = Application.streamingAssetsPath + "/Json/Level/Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json";
         StreamWriter streamWriter = new StreamWriter(filePath);
         string content = JsonMapper.ToJson(levelInfo);
         streamWriter.Write(content);
@@ -245,7 +245,7 @@ public class MapMaker : MonoBehaviour {
     public LevelInfo LoadLevelInfoFromJson(string fileName)
     {
         LevelInfo levelInfo = new LevelInfo();
-        string filePath = Application.dataPath + "/Resources/Json/Level/" + fileName;
+        string filePath = Application.streamingAssetsPath + "/Json/Level/" + fileName;
         if (!File.Exists(filePath))
         {
             Debug.Log("文件读取失败，filePath:" + filePath);
@@ -268,10 +268,10 @@ public class MapMaker : MonoBehaviour {
             for (int y = 0; y < yRow; y++)
             {
                 gridPoints[x, y].gridState = levelInfo.gridPoints[y + x * yRow];
-#if Tool
-                // 改变状态
-                gridPoints[x, y].UpdateGrid();
-#endif
+//#if Tool
+//                // 改变状态
+//                gridPoints[x, y].UpdateGrid();
+//#endif
                 gridPoints[x, y].UpdateGrid();
             }
         }

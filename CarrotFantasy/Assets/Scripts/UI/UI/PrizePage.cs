@@ -16,7 +16,7 @@ public class PrizePage : MonoBehaviour {
         m_animator = GetComponent<Animator>();
         m_prizeImg = transform.Find("Img_Prize").GetComponent<Image>();
         m_instructionImg = transform.Find("Img_Instruction").GetComponent<Image>();
-        m_prizeNameText = transform.Find("Text_PrizeName").GetComponent<Text>();
+        m_prizeNameText = transform.Find("Img_Prize").Find("Text_PrizeName").GetComponent<Text>(); 
         m_normalModelPanel = transform.GetComponentInParent<NormalModelPanel>();
     }
 
@@ -64,7 +64,7 @@ public class PrizePage : MonoBehaviour {
         m_prizeNameText.text = prizeName;
         m_prizeImg.sprite = GameController.Instance.GetSprite("MonsterNest/Prize/Prize" + randomNum.ToString());
         m_instructionImg.sprite = GameController.Instance.GetSprite("MonsterNest/Prize/Instruction" + randomNum.ToString());
-        m_animator.Play("Enter");
+        m_animator.Play("PrizePage");
     }
 
     private bool HasPetEgg(int eggID)

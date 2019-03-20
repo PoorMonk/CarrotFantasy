@@ -161,10 +161,12 @@ public class Monster : MonoBehaviour {
 
     private void DestroyMonster()
     {
+#if Game
         if (m_gameController.targetTrans == transform)
         {
             m_gameController.HideSignal();
         }
+#endif
         //Debug.Log("DestroyMonster");
         if (!m_reachCarrot) //被杀死
         {

@@ -10,7 +10,7 @@ public class Memento
     public void SaveToJson()
     {
         PlayerManager playerManager = GameManager.Instance.m_playerManager;
-        string filePath = Application.dataPath + "/Resources/Json/" + "playerManager.json";
+        string filePath = Application.streamingAssetsPath + "/Json/" + "playerManager.json";
         string saveJsonStr = JsonMapper.ToJson(playerManager);
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(saveJsonStr);
@@ -25,11 +25,11 @@ public class Memento
         string filePath = "";
         if (GameManager.Instance.initPlayerManager)
         {
-            filePath = Application.dataPath + "/Resources/Json/" + "playerManagerInitData.json";
+            filePath = Application.streamingAssetsPath + "/Json/" + "playerManagerInitData.json";
         }
         else
         {
-            filePath = Application.dataPath + "/Resources/Json/" + "playerManager.json";
+            filePath = Application.streamingAssetsPath + "/Json/" + "playerManager.json";
         }
         if (File.Exists(filePath))
         {

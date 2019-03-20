@@ -225,60 +225,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afe49adb59e3694a86846da11428fc9, type: 2}
   m_IsPrefabAsset: 0
---- !u!1001 &433867048
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4504748368939320, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1507924900327730, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4263477398184624, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1507924900327730, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-      propertyPath: m_Name
-      value: Grid (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,6 +621,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed229958a2d09a44ca7c0038acefe63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDrawLine: 0
+  GridGo: {fileID: 1507924900327730, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
   m_gridWidth: 1.1111112
   m_gridHeight: 1.25
   bigLevelID: 1

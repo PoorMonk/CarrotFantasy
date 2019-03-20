@@ -10,7 +10,31 @@ public class CrystalBullet : Bullet
 	// Update is called once per frame
 	protected override void Update ()
     {
-        base.Update();
+        if (GameController.Instance.IsGameOver)
+        {
+            DestroyBullet();
+            return;
+        }
+        if (GameController.Instance.isPause)
+        {
+            return;
+        }
+        if (targetTrans == null || !targetTrans.gameObject.activeSelf)
+        {
+            DestroyBullet();
+            return;
+        }
+
+        //子弹的移动和转向
+        if (targetTrans.tag.Equals("Monster"))
+        {
+            transform.LookAt(targetTrans.position);
+        }
+
+        if (targetTrans.tag.Equals("Item"))
+        {
+            transform.LookAt(targetTrans.position + new Vector3(0, 0, 3));
+        }
         if (!m_canTakeDamage)
         {
             m_attackTimeVal += Time.deltaTime;

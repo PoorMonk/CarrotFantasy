@@ -24,7 +24,7 @@ public class NormalModelPanel : BasePanel {
     {
         base.Awake();
         m_gameController = GameController.Instance;
-        Debug.Log("gamecontroller: " + m_gameController);
+        //Debug.Log("gamecontroller: " + m_gameController);
         m_topPageGo = transform.Find("Img_TopPage").gameObject;
         m_gameoverPageGo = transform.Find("GameOverPage").gameObject;
         m_gameWinPageGo = transform.Find("GameWinPage").gameObject;
@@ -51,7 +51,9 @@ public class NormalModelPanel : BasePanel {
     private void StartGame()
     {
         GameController.Instance.PlayEffectMusic("NormalModel/GO");
+#if Game
         m_gameController.StartGame();
+#endif
         m_startGameImg.SetActive(false);
         CancelInvoke();
     }
@@ -112,12 +114,16 @@ public class NormalModelPanel : BasePanel {
         }
         //萝卜徽章更新
         int carrotState = m_gameController.GetCarrotState();
-        if (carrotState != 0)
+        if (carrotState != 0 && stage.m_carrotState != 0)
         {
             if (stage.m_carrotState > carrotState)
             {
                 stage.m_carrotState = carrotState;
             }
+        }
+        else if (stage.m_carrotState == 0)
+        {
+            stage.m_carrotState = carrotState;
         }
         //解锁下一关卡
         if (m_gameController.currentStage.m_levelID % 5 != 0 && (m_gameController.currentStage.m_levelID - 1 +

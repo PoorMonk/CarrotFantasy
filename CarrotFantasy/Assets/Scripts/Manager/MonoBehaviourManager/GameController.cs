@@ -66,13 +66,14 @@ public class GameController : MonoBehaviour {
 #if Game
         _instance = this;
         m_gameManager = GameManager.Instance;
-        Debug.Log("GameController");
+        //Debug.Log("GameController");
         //Debug.Log(m_gameManager);
         currentStage = m_gameManager.m_currentStage;
         normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
         normalModelPanel.EnterPanel();
         //currentStage = new Stage(10, 5, new int[] { 1, 2, 3, 4, 5 }, false, 0, 1, 1, true, false);
         //monsterIDList = new int[5];
+        //monsterIDList = level.currentRound.
         mapMaker = GetComponent<MapMaker>();
         mapMaker.InitMapMaker();
         mapMaker.LoadMap(currentStage.m_bigLevelID, currentStage.m_levelID);
@@ -124,6 +125,10 @@ public class GameController : MonoBehaviour {
             //Debug.Log("monsterIDList.Length:" + monsterIDList.Length);
             if (killMonsterNum >= monsterIDList.Length)
             {
+                if (level.currentRound >= level.totalRound)
+                {
+                    return;
+                }
                 AddRoundNum();
             }
             else
@@ -296,7 +301,7 @@ public class GameController : MonoBehaviour {
         
         if (monsterIDIndex < monsterIDList.Length) 
         {
-            Round.RoundInfo round = level.roundList[level.currentRound].roundInfo; 
+            //Round.RoundInfo round = level.roundList[level.currentRound].roundInfo; 
             monsterBuilder.monsterID = level.roundList[level.currentRound].roundInfo.monsterIDList[monsterIDIndex];
         }
 

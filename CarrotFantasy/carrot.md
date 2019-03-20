@@ -201,7 +201,7 @@ public class ScrollViewMove : MonoBehaviour, IBeginDragHandler, IEndDragHandler
 		}
 	}
 
-Unity宏定义
+**Unity宏定义**
 
 Build Setting --> Player Settings --> Scripting Define Symbols下定义
 
@@ -270,3 +270,6 @@ Build Setting --> Player Settings --> Scripting Define Symbols下定义
 
 3 Json文件在读取自定义类信息时，类中不能包含有构造方法。
 
+4 项目打包时，Resources文件夹下的所有文件都会进行压缩，而Json文件的读取必须按固定的格式，所以如果把Json文件放在Resources文件夹下，会读取失败。
+
+解决方案：把所有Json文件都放在StreamAssets文件夹下。

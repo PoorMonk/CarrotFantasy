@@ -16,7 +16,7 @@ public class GameNormalLevelPanel : BasePanel
     private Image imgBGRight;               //右边背景图片
     private Image imgCarrot;                //萝卜星级图片
     private Image imgAllClear;              //道具清除图片
-    private Text texTotalWaves;             //怪物波数
+    private Text m_texTotalWaves;             //怪物波数
 
     private PlayerManager m_playerManager;
     private SlideScrollView m_slideScrollView;
@@ -38,7 +38,7 @@ public class GameNormalLevelPanel : BasePanel
         empTowerTrans = transform.Find("Emp_Tower");
         imgBGLeft = transform.Find("Img_BGLeft").GetComponent<Image>();
         imgBGRight = transform.Find("Img_BGRight").GetComponent<Image>();
-        texTotalWaves = transform.Find("Img_TotalWaves").Find("Text").GetComponent<Text>();
+        m_texTotalWaves = transform.Find("Img_TotalWaves").Find("Text").GetComponent<Text>();
         m_slideScrollView = transform.Find("Scroll View").GetComponent<SlideScrollView>();
         currentBigLevelID = 1;
         currentLevelID = 1;
@@ -102,7 +102,7 @@ public class GameNormalLevelPanel : BasePanel
     public void UpdateLevelUI(string spritePath)
     {
         DestroyLevelUI();
-        Debug.Log("ID:" + ((currentBigLevelID - 1) * 5 + currentLevelID - 1));
+        //Debug.Log("ID:" + ((currentBigLevelID - 1) * 5 + currentLevelID - 1));
         Stage stage = m_playerManager.unLockedNormalModelLevelList[(currentBigLevelID - 1) * 5 + currentLevelID - 1];
         if (stage.m_unLocked) //已解锁
         {
@@ -118,6 +118,7 @@ public class GameNormalLevelPanel : BasePanel
             m_towerContentImageList[i].GetComponent<Image>().sprite = m_uiFacade.GetSprite(filePath +
                 "Tower/Tower_" + stage.m_towerIDList[i].ToString());
         }
+        m_texTotalWaves.text = stage.m_totalRound.ToString();
     }
 
     //清除静态UI

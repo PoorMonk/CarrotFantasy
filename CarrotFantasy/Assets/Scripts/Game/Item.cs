@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Item : MonoBehaviour {
 
@@ -22,15 +23,23 @@ public class Item : MonoBehaviour {
     {
         if (itemID != 0)
         {
+#if Game
             InitItem();
+#endif
         }
     }
 
     private void Start()
     {
+#if Tool
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.Find("Mask").GetComponent<BoxCollider>().enabled = false;
+#endif
         m_gameController = GameController.Instance;
         m_slider = transform.Find("ItemCanvas").Find("HpSlider").GetComponent<Slider>();
+#if Game
         InitItem();
+#endif
         m_slider.gameObject.SetActive(false);
     }
 
@@ -77,6 +86,7 @@ public class Item : MonoBehaviour {
         coinGo.transform.Find("Emp_Coin").GetComponent<Coin>().prize = m_prize;
         coinGo.transform.SetParent(m_gameController.transform);
         coinGo.transform.position = transform.position;
+        m_gameController.ChangeCoin(m_prize);
 
         GameObject effectGo = m_gameController.GetGameObject("DestoryEffect");
         effectGo.transform.SetParent(m_gameController.transform);
@@ -98,6 +108,10 @@ public class Item : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        if (EventSystem.current.IsPointerOverGameObject()) //点击到的是UI
+        {
+            return;
+        }
         if (m_gameController.targetTrans == null)
         {
             m_gameController.targetTrans = transform;

@@ -30,6 +30,7 @@ public class Level
         if (currentRound >= totalRound)
         {
             //胜利
+            currentRound--;
             GameController.Instance.normalModelPanel.ShowGameWinPage();
         }
         else if (currentRound == totalRound - 1)

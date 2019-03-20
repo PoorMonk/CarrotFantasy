@@ -19,6 +19,7 @@ public class ButtonTower : MonoBehaviour {
         {
             UpdateIcon();
         }
+        m_gameController = GameController.Instance;
     }
 
     private void Start()
@@ -47,9 +48,10 @@ public class ButtonTower : MonoBehaviour {
         GameObject buildEffect = m_gameController.GetGameObject("BuildEffect");
         buildEffect.transform.SetParent(m_gameController.transform);
         buildEffect.transform.position = m_gameController.selectedGrid.transform.position;
-
+#if Game
         m_gameController.selectedGrid.AfterBuild();
         m_gameController.selectedGrid.HideGrid();
+#endif
         m_gameController.selectedGrid.isHasTower = true;
         m_gameController.ChangeCoin(-price);
 
