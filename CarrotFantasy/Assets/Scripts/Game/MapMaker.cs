@@ -111,7 +111,7 @@ public class MapMaker : MonoBehaviour {
         startPoint.transform.SetParent(transform);
 
         GameObject endPoint = GameController.Instance.GetGameObject("Carrot");
-        endPoint.transform.position = monsterPathPos[monsterPathPos.Count - 1] - new Vector3(0, 0, 1);
+        endPoint.transform.position = monsterPathPos[monsterPathPos.Count - 1] - new Vector3(0, -m_gridHeight / 2, 1);
         endPoint.transform.SetParent(transform);
 
         carrot = endPoint.GetComponent<Carrot>();

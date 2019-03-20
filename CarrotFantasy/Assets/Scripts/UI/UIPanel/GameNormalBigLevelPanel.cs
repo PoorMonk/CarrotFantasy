@@ -92,8 +92,8 @@ public class GameNormalBigLevelPanel : BasePanel
         }
         else
         {
-            theBigLevelButtonTrans.Find("Img_Lock").gameObject.SetActive(false);
-            theBigLevelButtonTrans.Find("Img_Bookmark").gameObject.SetActive(true);
+            theBigLevelButtonTrans.Find("Img_Lock").gameObject.SetActive(true);
+            theBigLevelButtonTrans.Find("Img_Bookmark").gameObject.SetActive(false);
             theBigLevelButtonTrans.GetComponent<Button>().interactable = false;
         }
     }

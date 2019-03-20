@@ -36,6 +36,10 @@ public class ButtonTower : MonoBehaviour {
 
     private void BuildTower()
     {
+        if (m_gameController.coin < price)
+        {
+            return;
+        }
         m_gameController.PlayEffectMusic("NormalModel/Tower/TowerBulid");
 
         m_gameController.towerBuild.towerID = towerID;

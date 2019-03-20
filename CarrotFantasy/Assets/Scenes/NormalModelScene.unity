@@ -621,8 +621,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed229958a2d09a44ca7c0038acefe63e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsDrawLine: 0
-  GridGo: {fileID: 1507924900327730, guid: 2e01714ee7913e44eb5c6f88daa6c285, type: 2}
   m_gridWidth: 1.1111112
   m_gridHeight: 1.25
   bigLevelID: 1
