@@ -118,9 +118,11 @@
     <Compile Include="Assets\Scripts\Test\DoTweenTest.cs" />
     <Compile Include="Assets\Scripts\Test\MouseListen.cs" />
     <Compile Include="Assets\Scripts\Test\State.cs" />
+    <Compile Include="Assets\Scripts\Test\TimeScaleTest.cs" />
     <Compile Include="Assets\Scripts\UI\UI\BtnSellTower.cs" />
     <Compile Include="Assets\Scripts\UI\UI\BtnUpLevel.cs" />
     <Compile Include="Assets\Scripts\UI\UI\ButtonTower.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\CanvasAdapter.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\UI\UI\Coin.cs" />
     <Compile Include="Assets\Scripts\UI\UI\GameOverPage.cs" />

@@ -59,14 +59,12 @@ public class GameController : MonoBehaviour {
     //处理塔升级与买卖的画布
     public GameObject handleTowerCanvas;
 
-
-
     private void Awake()
     {
 #if Game
         _instance = this;
         m_gameManager = GameManager.Instance;
-        //Debug.Log("GameController");
+        Debug.Log("GameController");
         //Debug.Log(m_gameManager);
         currentStage = m_gameManager.m_currentStage;
         normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
@@ -77,6 +75,7 @@ public class GameController : MonoBehaviour {
         mapMaker = GetComponent<MapMaker>();
         mapMaker.InitMapMaker();
         mapMaker.LoadMap(currentStage.m_bigLevelID, currentStage.m_levelID);
+
         level = new Level(mapMaker.roundInfos.Count, mapMaker.roundInfos);
         //Debug.Log("mapMaker.roundInfos.Count: " + mapMaker.roundInfos.Count);
         //Debug.Log("mapMaker.roundInfos: " + mapMaker.roundInfos);
@@ -84,17 +83,6 @@ public class GameController : MonoBehaviour {
         towerBuild = new TowerBuild();
         gameSpeed = 1;
         
-
-        for (int i = 0; i < currentStage.m_towerIDList.Length; i++)
-        {
-            GameObject towerGo = m_gameManager.GetGameObjectResource(FactoryType.UIFactory, "Btn_TowerBuild");
-
-            towerGo.GetComponent<ButtonTower>().towerID = currentStage.m_towerIDList[i];
-            towerGo.transform.SetParent(towerList.transform);
-            towerGo.transform.localPosition = Vector3.zero;
-            towerGo.transform.localScale = Vector3.one;
-        }
-
         //建塔价格表
         towerPriceDict = new Dictionary<int, int>
         {
@@ -106,14 +94,31 @@ public class GameController : MonoBehaviour {
         };
 
         controllers = new RuntimeAnimatorController[12];
+
+        Init();
+        isPause = true;
+#endif
+    }
+
+    private void Init()
+    {
+        currentStage = m_gameManager.m_currentStage;
+        
+        for (int i = 0; i < currentStage.m_towerIDList.Length; i++)
+        {
+            GameObject towerGo = m_gameManager.GetGameObjectResource(FactoryType.UIFactory, "Btn_TowerBuild");
+
+            towerGo.GetComponent<ButtonTower>().towerID = currentStage.m_towerIDList[i];
+            towerGo.transform.SetParent(towerList.transform);
+            towerGo.transform.localPosition = Vector3.zero;
+            towerGo.transform.localScale = Vector3.one;
+        }
         for (int i = 0; i < controllers.Length; i++)
         {
             controllers[i] = GetRuntimeAnimatorController("AnimatorController/Monster/" + mapMaker.bigLevelID.ToString() + "/" + (i + 1).ToString());
         }
         normalModelPanel.m_topPage.UpdateCoinText();
         normalModelPanel.m_topPage.UpdateRoundText();
-        isPause = true;
-#endif
     }
 
     private void Update()
@@ -125,6 +130,8 @@ public class GameController : MonoBehaviour {
             //Debug.Log("monsterIDList.Length:" + monsterIDList.Length);
             if (killMonsterNum >= monsterIDList.Length)
             {
+                //Debug.Log("level.currentRound: " + level.currentRound);
+                //Debug.Log("level.totalRound: " + level.totalRound);
                 if (level.currentRound >= level.totalRound)
                 {
                     return;
@@ -143,8 +150,11 @@ public class GameController : MonoBehaviour {
         else //暂停
         {
             //Debug.Log("Stop...");
-            StopCreateMonster();
-            IsCreateingMonster = false; 
+            if (IsCreateingMonster)
+            {
+                StopCreateMonster();
+                IsCreateingMonster = false;
+            }
         }
 #endif
     }
@@ -222,11 +232,13 @@ public class GameController : MonoBehaviour {
 
     private void StopCreateMonster()
     {
+        //Debug.Log("Stop...");
         CancelInvoke();
     }
 
     public void AddRoundNum()
     {
+        Debug.Log("AddRoundNum");
         monsterIDIndex = 0;
         killMonsterNum = 0;
         level.AddRoundNum();
@@ -289,6 +301,8 @@ public class GameController : MonoBehaviour {
     private void InstantiateMonster()
     {
         PlayEffectMusic("NormalModel/Monster/Create");
+        //Debug.Log("monsterIDIndex: " + monsterIDIndex);
+        //Debug.Log("monsterIDList.Length: " + monsterIDList.Length);
         if (monsterIDIndex >= monsterIDList.Length)
         {
             StopCreateMonster();
@@ -302,6 +316,11 @@ public class GameController : MonoBehaviour {
         if (monsterIDIndex < monsterIDList.Length) 
         {
             //Round.RoundInfo round = level.roundList[level.currentRound].roundInfo; 
+            //Debug.Log("roundList length: " + level.roundList.Length);
+            //Debug.Log("current round: " + level.currentRound);
+            Debug.Log("monsterIDList: " + monsterIDList.Length);
+            Debug.Log("monsterIDList length: " + level.roundList[level.currentRound].roundInfo.monsterIDList.Length);
+            Debug.Log("monsterIDIndex: " + monsterIDIndex);
             monsterBuilder.monsterID = level.roundList[level.currentRound].roundInfo.monsterIDList[monsterIDIndex];
         }
 

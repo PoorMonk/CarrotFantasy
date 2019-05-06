@@ -31,6 +31,8 @@ public class Round
 	
     public void Handle(int roundID)
     {
+        //Debug.Log("m_currentRoundID: " + m_currentRoundID);
+        //Debug.Log("roundID: " + roundID);
         if (m_currentRoundID < roundID)
         {
             m_nextRound.Handle(roundID);

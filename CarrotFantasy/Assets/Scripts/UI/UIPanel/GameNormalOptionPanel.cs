@@ -26,5 +26,6 @@ public class GameNormalOptionPanel : BasePanel
     {
         m_uiFacade.PlayButtonAudioClip();
         m_uiFacade.currentScenePanelDict[StringManager.HelpPanel].EnterPanel();
+        IsInBigLevelPanel = true;
     }
 }

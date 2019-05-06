@@ -41,6 +41,12 @@ public class NormalModelPanel : BasePanel {
         Invoke("StartGame", 3.5f);
     }
 
+    private void OnEnable()
+    {
+        InvokeRepeating("PlayAudio", 0.5f, 1);
+        Invoke("StartGame", 3.5f);
+    }
+
     //播放开始游戏倒计时声音
     private void PlayAudio()
     {
@@ -166,13 +172,14 @@ public class NormalModelPanel : BasePanel {
     public void ShowFinalWave()
     {
         GameController.Instance.PlayEffectMusic("NormalModel/Finalwave");
-        m_finalWaveImg.SetActive(false);
+        m_finalWaveImg.SetActive(true);
         Invoke("CloseFinalWave", 0.508f);
     }
 
     private void CloseFinalWave()
     {
         m_finalWaveImg.SetActive(false);
+        GameController.Instance.CreateMonster();
     }
 
     //更新基础数据
@@ -203,8 +210,11 @@ public class NormalModelPanel : BasePanel {
     public void Replay()
     {
         UpdatePlayerManagerData();
-        m_uiFacade.ChangeSceneState(new NormalModelSceneState(m_uiFacade));
+        //m_uiFacade.ChangeSceneState(new NormalModelSceneState(m_uiFacade));
         m_gameController.IsGameOver = false;
+        GameManager.Instance.GoToNextStage();
+        //GameManager.Instance.m_playerManager.unLockedNormalModelLevelList.FindIndex((System.Predicate<Stage>)GameManager.Instance.m_currentStage);
+        //m_uiFacade.currentScenePanelDict[StringManager.GameNormalLevelPanel].
         Invoke("ResetGame", 2f);
     }
 

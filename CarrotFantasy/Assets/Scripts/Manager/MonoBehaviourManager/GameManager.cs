@@ -34,6 +34,17 @@ public class GameManager : MonoBehaviour {
         m_uiManager.m_uiFacade.currentSceneState.EnterScene();
 	}
 
+    // 游戏胜利后点继续游戏可以去往下一关
+    public void GoToNextStage()
+    {
+        if (m_currentStage.m_levelID >= 5)
+        {
+            m_currentStage.m_bigLevelID++;
+            m_currentStage.m_levelID = 1;
+        }
+        m_currentStage = m_playerManager.unLockedNormalModelLevelList[(m_currentStage.m_bigLevelID - 1) * 5 + m_currentStage.m_levelID - 1];
+    }
+
     /// <summary>
     /// 为没有继承MonoBehaviour的类生成实例对象
     /// </summary>

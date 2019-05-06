@@ -37,6 +37,7 @@ public class Level
         {
             //处理最后一波怪的音乐
             GameController.Instance.normalModelPanel.ShowFinalWave();
+            HandleFinalRound();
         }
         else
         {
