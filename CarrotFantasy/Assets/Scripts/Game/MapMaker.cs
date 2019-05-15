@@ -96,6 +96,7 @@ public class MapMaker : MonoBehaviour {
     //加载地图
     public void LoadMap(int bigLevel, int level)
     {
+        Debug.Log("loadMap...");
         bigLevelID = bigLevel;
         levelID = level;
         LoadLevelInfo(LoadLevelInfoFromJson("Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json"));
@@ -103,6 +104,7 @@ public class MapMaker : MonoBehaviour {
         for (int i = 0; i < monsterPath.Count; i++)
         {
             monsterPathPos.Add(gridPoints[monsterPath[i].xIndex, monsterPath[i].yIndex].transform.position);
+            Debug.Log("position: " + gridPoints[monsterPath[i].xIndex, monsterPath[i].yIndex].transform.position);
         }
 
         //起始点与终止点

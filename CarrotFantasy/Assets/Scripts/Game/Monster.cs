@@ -33,16 +33,24 @@ public class Monster : MonoBehaviour {
 
     private void Awake()
     {
+        Debug.Log("Awake");
         m_animator = GetComponent<Animator>();
         m_slider = transform.Find("MonsterCanvas").Find("HPSlider").GetComponent<Slider>();
         m_slider.gameObject.SetActive(false);
-        m_gameController = GameController.Instance;
-        m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
+        //m_gameController = GameController.Instance;
+        //m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
         shitGo = transform.Find("DecreaseEffect").gameObject;
     }
 
     private void OnEnable()
     {
+        m_gameController = GameController.Instance;
+        shitGo = transform.Find("DecreaseEffect").gameObject;
+        m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
+        for (int i = 0; i < m_monsterPathPosList.Count; i++)
+        {
+            Debug.Log("pathPosition: " + m_monsterPathPosList[i]);
+        }
         InitMonsterInfo();
         TurnMonster(true);
     }

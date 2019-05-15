@@ -482,7 +482,6 @@
 		"hasItem": false,
 		"itemID": 0
 	}],
-	"monsterPathLength": 6,
 	"monsterPath": [{
 		"xIndex": 7,
 		"yIndex": 1
@@ -502,7 +501,6 @@
 		"xIndex": 4,
 		"yIndex": 5
 	}],
-	"totalRoundNum": 10,
 	"roundInfo": [{
 		"monsterIDList": [1, 1, 1, 1, 1],
 		"monsterNum": 5

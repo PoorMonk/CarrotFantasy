@@ -318,9 +318,9 @@ public class GameController : MonoBehaviour {
             //Round.RoundInfo round = level.roundList[level.currentRound].roundInfo; 
             //Debug.Log("roundList length: " + level.roundList.Length);
             //Debug.Log("current round: " + level.currentRound);
-            Debug.Log("monsterIDList: " + monsterIDList.Length);
-            Debug.Log("monsterIDList length: " + level.roundList[level.currentRound].roundInfo.monsterIDList.Length);
-            Debug.Log("monsterIDIndex: " + monsterIDIndex);
+            //Debug.Log("monsterIDList: " + monsterIDList.Length);
+            //Debug.Log("monsterIDList length: " + level.roundList[level.currentRound].roundInfo.monsterIDList.Length);
+            //Debug.Log("monsterIDIndex: " + monsterIDIndex);
             monsterBuilder.monsterID = level.roundList[level.currentRound].roundInfo.monsterIDList[monsterIDIndex];
         }
 
