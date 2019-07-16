@@ -57,7 +57,7 @@ public class MainPanel : BasePanel {
 
     private void PlayUITween()
     {
-        m_monsterTrans.DOLocalMoveY(550, 1.5f).SetLoops(-1, LoopType.Yoyo);
+        m_monsterTrans.DOLocalMoveY(400, 1.5f).SetLoops(-1, LoopType.Yoyo);
         m_cloudTrans.DOLocalMoveX(1200, 8f).SetLoops(-1, LoopType.Restart);
     }
 
