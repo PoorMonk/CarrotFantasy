@@ -81,8 +81,8 @@ public class MonsterNestPanel : BasePanel
         if (GameManager.Instance.m_playerManager.diamands >= 60)
         {
             GameManager.Instance.m_playerManager.diamands -= 60;
+            GameManager.Instance.m_playerManager.nest++;
         }
-        GameManager.Instance.m_playerManager.nest++;
         UpdateText();
     }
 

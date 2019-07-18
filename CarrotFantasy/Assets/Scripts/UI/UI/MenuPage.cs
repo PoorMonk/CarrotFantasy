@@ -16,6 +16,7 @@ public class MenuPage : MonoBehaviour {
         GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
         GameController.Instance.isPause = false;
         transform.gameObject.SetActive(false);
+        normalModelPanel.m_topPage.UpdateStatus();
     }
 
     public void Replay()

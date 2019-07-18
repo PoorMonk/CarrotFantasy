@@ -33,7 +33,7 @@ public class Monster : MonoBehaviour {
 
     private void Awake()
     {
-        Debug.Log("Awake");
+        //Debug.Log("Awake");
         m_animator = GetComponent<Animator>();
         m_slider = transform.Find("MonsterCanvas").Find("HPSlider").GetComponent<Slider>();
         m_slider.gameObject.SetActive(false);
@@ -47,10 +47,10 @@ public class Monster : MonoBehaviour {
         m_gameController = GameController.Instance;
         shitGo = transform.Find("DecreaseEffect").gameObject;
         m_monsterPathPosList = m_gameController.mapMaker.monsterPathPos;
-        for (int i = 0; i < m_monsterPathPosList.Count; i++)
-        {
-            Debug.Log("pathPosition: " + m_monsterPathPosList[i]);
-        }
+        //for (int i = 0; i < m_monsterPathPosList.Count; i++)
+        //{
+        //    Debug.Log("pathPosition: " + m_monsterPathPosList[i]);
+        //}
         InitMonsterInfo();
         TurnMonster(true);
     }
@@ -187,7 +187,7 @@ public class Monster : MonoBehaviour {
             m_gameController.ChangeCoin(prize);
 
             int randomNum = Random.Range(0, 100);
-            if (randomNum < 10)
+            if (randomNum < 5)
             {
                 GameObject prizeGo = GameController.Instance.GetGameObject("Prize");
                 prizeGo.transform.position = transform.position - new Vector3(0, 0, 6);

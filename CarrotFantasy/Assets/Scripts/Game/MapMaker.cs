@@ -96,7 +96,7 @@ public class MapMaker : MonoBehaviour {
     //加载地图
     public void LoadMap(int bigLevel, int level)
     {
-        Debug.Log("loadMap...");
+        //Debug.Log("loadMap...");
         bigLevelID = bigLevel;
         levelID = level;
         LoadLevelInfo(LoadLevelInfoFromJson("Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json"));
@@ -104,7 +104,7 @@ public class MapMaker : MonoBehaviour {
         for (int i = 0; i < monsterPath.Count; i++)
         {
             monsterPathPos.Add(gridPoints[monsterPath[i].xIndex, monsterPath[i].yIndex].transform.position);
-            Debug.Log("position: " + gridPoints[monsterPath[i].xIndex, monsterPath[i].yIndex].transform.position);
+            //Debug.Log("position: " + gridPoints[monsterPath[i].xIndex, monsterPath[i].yIndex].transform.position);
         }
 
         //起始点与终止点
@@ -248,15 +248,27 @@ public class MapMaker : MonoBehaviour {
     {
         LevelInfo levelInfo = new LevelInfo();
         string filePath = Application.streamingAssetsPath + "/Json/Level/" + fileName;
-        if (!File.Exists(filePath))
+        WWW wWW = new WWW(filePath);
+        if (wWW.error != null)
         {
             Debug.Log("文件读取失败，filePath:" + filePath);
             return null;
         }
-        StreamReader sr = new StreamReader(filePath);
-        string content = sr.ReadToEnd();
-        levelInfo = JsonMapper.ToObject<LevelInfo>(content);
-        sr.Close();
+        while (!wWW.isDone)
+        {
+
+        }
+
+        levelInfo = JsonMapper.ToObject<LevelInfo>(wWW.text);
+        //if (!File.Exists(filePath))
+        //{
+        //    Debug.Log("文件读取失败，filePath:" + filePath);
+        //    return null;
+        //}
+        //StreamReader sr = new StreamReader(filePath);
+        //string content = sr.ReadToEnd();
+        //levelInfo = JsonMapper.ToObject<LevelInfo>(content);
+        //sr.Close();
         return levelInfo;
     }
 

@@ -71,7 +71,7 @@ public class GridPoint : MonoBehaviour {
         }
 #endif
         m_spriteRenderer = GetComponent<SpriteRenderer>();
-        InitGrid();
+        InitGrid(); 
 #if Game
         m_gameController = GameController.Instance;
         m_gridSprite = m_gameController.GetSprite("NormalModel/Game/Grid");
@@ -115,18 +115,47 @@ public class GridPoint : MonoBehaviour {
                 }
             }
         }
+
+#if UNITY_ANDROID
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        //    {
+        //        if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        //        {
+        //            m_gameController.HandleGrid(this);
+        //        }
+        //    }
+        //}
+        
+#endif
     }
 
 #if Game
     private void OnMouseDown()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+
+        //if (EventSystem.current.IsPointerOverGameObject())
+        if (IsPointerOverGameObject(Input.mousePosition))
+
+        //if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+
         {
             //Debug.Log("ispointover");
             return;
-        }
+        }   
         m_gameController.HandleGrid(this);
         //Debug.Log("OnMouseDown");
+
+    }
+
+    private bool IsPointerOverGameObject(Vector2 screenPosition)
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+        eventDataCurrentPosition.position = screenPosition;//new Vector2(screenPosition.x, screenPosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 
     public void AfterBuild()

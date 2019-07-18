@@ -19,8 +19,25 @@ public class Tower : MonoBehaviour {
         m_towerPersonalProperty.tower = this;
         m_attackRangeSr = transform.Find("attackRange").GetComponent<SpriteRenderer>();
         m_attackRangeSr.gameObject.SetActive(false);
-        m_attackRangeSr.transform.localScale = new Vector3(m_towerPersonalProperty.towerLevel, m_towerPersonalProperty.towerLevel, 1);
-        m_circleCollider2D.radius = 1.1f * m_towerPersonalProperty.towerLevel;
+        //m_attackRangeSr.transform.localScale = new Vector3(m_towerPersonalProperty.towerLevel, m_towerPersonalProperty.towerLevel, 1);
+        //m_circleCollider2D.radius = 1.1f * m_towerPersonalProperty.towerLevel;
+        switch (m_towerPersonalProperty.towerLevel)
+        {
+            case 1:
+                m_attackRangeSr.transform.localScale = new Vector3(1.75f, 1.75f, 1);
+                m_circleCollider2D.radius = 1.8f;
+                break;
+            case 2:
+                m_attackRangeSr.transform.localScale = new Vector3(m_towerPersonalProperty.towerLevel, m_towerPersonalProperty.towerLevel, 1);
+                m_circleCollider2D.radius = 2.2f;
+                break;
+            case 3:
+                m_attackRangeSr.transform.localScale = new Vector3(m_towerPersonalProperty.towerLevel, m_towerPersonalProperty.towerLevel, 1);
+                m_circleCollider2D.radius = 3.3f;
+                break;
+            default:
+                break;
+        }
         isTarget = false;
         hasTarget = false;
     }

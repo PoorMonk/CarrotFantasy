@@ -64,7 +64,7 @@ public class GameController : MonoBehaviour {
 #if Game
         _instance = this;
         m_gameManager = GameManager.Instance;
-        Debug.Log("GameController");
+        //Debug.Log("GameController");
         //Debug.Log(m_gameManager);
         currentStage = m_gameManager.m_currentStage;
         normalModelPanel = m_gameManager.m_uiManager.m_uiFacade.currentScenePanelDict[StringManager.NormalModelPanel] as NormalModelPanel;
@@ -238,7 +238,7 @@ public class GameController : MonoBehaviour {
 
     public void AddRoundNum()
     {
-        Debug.Log("AddRoundNum");
+        //Debug.Log("AddRoundNum");
         monsterIDIndex = 0;
         killMonsterNum = 0;
         level.AddRoundNum();

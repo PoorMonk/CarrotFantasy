@@ -15,7 +15,6 @@ public class Memento
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(saveJsonStr);
         sw.Close();
-        sw.Close();
     }
 	
     //读取
@@ -25,25 +24,41 @@ public class Memento
         string filePath = "";
         if (GameManager.Instance.initPlayerManager)
         {
+            //filePath = Application.persistentDataPath + "/Json/" + "playerManagerInitData.json";
             filePath = Application.streamingAssetsPath + "/Json/" + "playerManagerInitData.json";
         }
         else
         {
             filePath = Application.streamingAssetsPath + "/Json/" + "playerManager.json";
         }
-        if (File.Exists(filePath))
+
+        WWW wWW = new WWW(filePath);
+        if (wWW.error != null)
         {
-            StreamReader sr = new StreamReader(filePath);
-            string jsonStr = sr.ReadToEnd();
-            sr.Close();
-            playerManager = JsonMapper.ToObject<PlayerManager>(jsonStr);
-            return playerManager;
-        }
-        else
-        {
-            Debug.Log("PlayerManager读取失败");
+            Debug.Log("WWW error:" + filePath);
             return null;
         }
+
+        while (!wWW.isDone)
+        {
+
+        }
+
+        playerManager = JsonMapper.ToObject<PlayerManager>(wWW.text);
+        return playerManager;
+        //if (File.Exists(filePath))
+        //{
+        //    StreamReader sr = new StreamReader(filePath);
+        //    string jsonStr = sr.ReadToEnd();
+        //    sr.Close();
+        //    playerManager = JsonMapper.ToObject<PlayerManager>(jsonStr);
+        //    return playerManager;
+        //}
+        //else
+        //{
+        //    Debug.Log("PlayerManager读取失败: " + filePath);
+        //    return null;
+        //}
     }
     
 }

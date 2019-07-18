@@ -24,108 +24,108 @@ UI宽度=原来的宽度+（每一个单元格长度+间隙）*（单元格数�
 3. 移动一个单元格玩家鼠标需要滑动的距离：一个单元格长度/2+左偏移量
 4. 移动多个单元格玩家鼠标需要滑动的距离：第一个的单元格长度+左偏移量，之后的每一个滑动都是单元格长度/2+间隔
 
-``` C#
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using DG.Tweening;
 
-public class ScrollViewMove : MonoBehaviour, IBeginDragHandler, IEndDragHandler 
-{
-	private ScrollRect m_scrollRect;
-	public int m_cellLength;                // 单元格长度
-	public int m_spacing;                   // 间隔
-	public int m_leftOffset;                // 左偏移
-	public int m_totalItemNum;              // 共有几个单元格
-	private float m_upperLimit;             // 上限
-	private float m_lowerLimit;             // 下限	    
-	private float m_beginPosX;              // 开始位置
-	private float m_endPosX;                // 结束位置
-	private float m_lastProportion;         // 上一个位置的比例
-	private float m_oneItemLength;          // 滑动一个单元格所需要的距离
-	private float m_contentLength;          // 容器长度
-	private int m_currentIndex;             // 当前单元格索引		    
-	private float m_firstItemLength;        // 移动第一个单元格的距离
-	private float m_oneItemProportion;      // 移动一个单元格所占比例
-
-	public void OnBeginDrag(PointerEventData eventData)
+	using System.Collections;
+	using System.Collections.Generic;
+	using UnityEngine;
+	using UnityEngine.EventSystems;
+	using UnityEngine.UI;
+	using DG.Tweening;
+	
+	public class ScrollViewMove : MonoBehaviour, IBeginDragHandler, IEndDragHandler 
 	{
-		m_beginPosX = Input.mousePosition.x;
-	}
-
-	public void OnEndDrag(PointerEventData eventData)
-	{
-		float offsetX = 0;
-		m_endPosX = Input.mousePosition.x;
-		offsetX = (m_beginPosX - m_endPosX) * 2;
-		//Debug.Log("offsetX:" + offsetX);
-		//Debug.Log("m_firstItemLength:" + m_firstItemLength);
-		if (Mathf.Abs(offsetX) > m_firstItemLength)
+		private ScrollRect m_scrollRect;
+		public int m_cellLength;                // 单元格长度
+		public int m_spacing;                   // 间隔
+		public int m_leftOffset;                // 左偏移
+		public int m_totalItemNum;              // 共有几个单元格
+		private float m_upperLimit;             // 上限
+		private float m_lowerLimit;             // 下限	    
+		private float m_beginPosX;              // 开始位置
+		private float m_endPosX;                // 结束位置
+		private float m_lastProportion;         // 上一个位置的比例
+		private float m_oneItemLength;          // 滑动一个单元格所需要的距离
+		private float m_contentLength;          // 容器长度
+		private int m_currentIndex;             // 当前单元格索引		    
+		private float m_firstItemLength;        // 移动第一个单元格的距离
+		private float m_oneItemProportion;      // 移动一个单元格所占比例
+	
+		public void OnBeginDrag(PointerEventData eventData)
 		{
-			if (0 < offsetX) // 右滑
-			{
-				if (m_currentIndex >= m_totalItemNum)
-				{
-					return;
-				}
-				int moveCount = (int)((offsetX - m_firstItemLength) / m_oneItemLength) + 1;
-				m_currentIndex += moveCount;
-				if (m_currentIndex >= m_totalItemNum)  // 因为是加的moveCount，可能会越界，所以需要再加一次判断
-				{
-					m_currentIndex = m_totalItemNum;
-				}
-				m_lastProportion += m_oneItemProportion * moveCount;
-				if (m_lastProportion >= m_upperLimit)
-				{
-					m_lastProportion = 1;
-				}
-			}
-			else  // 左滑
-			{
-				if (m_currentIndex <= 1)
-				{
-					return;
-				}
-				int moveCount = (int)((offsetX + m_firstItemLength) / m_oneItemLength) - 1;
-				m_currentIndex += moveCount;
-				if (m_currentIndex <= 1)  // 因为是加的moveCount，可能会越界，所以需要再加一次判断
-				{
-					m_currentIndex = 1;
-				}
-				m_lastProportion += m_oneItemProportion * moveCount;
-				if (m_lastProportion <= m_lowerLimit)
-				{
-					m_lastProportion = 0; // 不能是m_lowerLimit 
-				}
-			}
+			m_beginPosX = Input.mousePosition.x;
 		}
-
-		DOTween.To(()=>m_scrollRect.horizontalNormalizedPosition, lerpValue=>m_scrollRect.horizontalNormalizedPosition=lerpValue, m_lastProportion, 0.3f).SetEase(Ease.Linear);
+	
+		public void OnEndDrag(PointerEventData eventData)
+		{
+			float offsetX = 0;
+			m_endPosX = Input.mousePosition.x;
+			offsetX = (m_beginPosX - m_endPosX) * 2;
+			//Debug.Log("offsetX:" + offsetX);
+			//Debug.Log("m_firstItemLength:" + m_firstItemLength);
+			if (Mathf.Abs(offsetX) > m_firstItemLength)
+			{
+				if (0 < offsetX) // 右滑
+				{
+					if (m_currentIndex >= m_totalItemNum)
+					{
+						return;
+					}
+					int moveCount = (int)((offsetX - m_firstItemLength) / m_oneItemLength) + 1;
+					m_currentIndex += moveCount;
+					if (m_currentIndex >= m_totalItemNum)  // 因为是加的moveCount，可能会越界，所以需要再加一次判断
+					{
+						m_currentIndex = m_totalItemNum;
+					}
+					m_lastProportion += m_oneItemProportion * moveCount;
+					if (m_lastProportion >= m_upperLimit)
+					{
+						m_lastProportion = 1;
+					}
+				}
+				else  // 左滑
+				{
+					if (m_currentIndex <= 1)
+					{
+						return;
+					}
+					int moveCount = (int)((offsetX + m_firstItemLength) / m_oneItemLength) - 1;
+					m_currentIndex += moveCount;
+					if (m_currentIndex <= 1)  // 因为是加的moveCount，可能会越界，所以需要再加一次判断
+					{
+						m_currentIndex = 1;
+					}
+					m_lastProportion += m_oneItemProportion * moveCount;
+					if (m_lastProportion <= m_lowerLimit)
+					{
+						m_lastProportion = 0; // 不能是m_lowerLimit 
+					}
+				}
+			}
+	
+			DOTween.To(()=>m_scrollRect.horizontalNormalizedPosition, lerpValue=>m_scrollRect.horizontalNormalizedPosition=lerpValue, m_lastProportion, 0.3f).SetEase(Ease.Linear);
+		}
+	
+		private void Awake()
+		{
+			m_scrollRect = GetComponent<ScrollRect>();
+			m_contentLength = m_scrollRect.content.rect.xMax - 2 * m_leftOffset - m_cellLength;
+			m_firstItemLength = m_cellLength / 2 + m_leftOffset;
+			m_oneItemLength = m_cellLength + m_spacing;
+			m_oneItemProportion = m_oneItemLength / m_contentLength;
+			m_lowerLimit = m_firstItemLength / m_contentLength;
+			m_upperLimit = 1 - m_lowerLimit;
+			m_currentIndex = 1;
+			m_scrollRect.horizontalNormalizedPosition = 0;
+	
+			// Debug.Log("right:" + m_scrollRect.content.rect.xMax);
+			// Debug.Log("contentLength:" + m_contentLength);
+			// Debug.Log("firstItemLength:" + m_firstItemLength);
+			// Debug.Log("oneItemLength:" + m_oneItemLength);
+			// Debug.Log("oneItemProportion:" + m_oneItemProportion);
+			// Debug.Log("m_lowerLimit:" + m_lowerLimit);
+			// Debug.Log("m_upperLimit:" + m_upperLimit);
+		}
 	}
-
-	private void Awake()
-	{
-		m_scrollRect = GetComponent<ScrollRect>();
-		m_contentLength = m_scrollRect.content.rect.xMax - 2 * m_leftOffset - m_cellLength;
-		m_firstItemLength = m_cellLength / 2 + m_leftOffset;
-		m_oneItemLength = m_cellLength + m_spacing;
-		m_oneItemProportion = m_oneItemLength / m_contentLength;
-		m_lowerLimit = m_firstItemLength / m_contentLength;
-		m_upperLimit = 1 - m_lowerLimit;
-		m_currentIndex = 1;
-		m_scrollRect.horizontalNormalizedPosition = 0;
-
-		// Debug.Log("right:" + m_scrollRect.content.rect.xMax);
-		// Debug.Log("contentLength:" + m_contentLength);
-		// Debug.Log("firstItemLength:" + m_firstItemLength);
-		// Debug.Log("oneItemLength:" + m_oneItemLength);
-		// Debug.Log("oneItemProportion:" + m_oneItemProportion);
-		// Debug.Log("m_lowerLimit:" + m_lowerLimit);
-		// Debug.Log("m_upperLimit:" + m_upperLimit);
-	}
-}
 ```
 		
 
@@ -273,3 +273,71 @@ Build Setting --> Player Settings --> Scripting Define Symbols下定义
 4 项目打包时，Resources文件夹下的所有文件都会进行压缩，而Json文件的读取必须按固定的格式，所以如果把Json文件放在Resources文件夹下，会读取失败。
 
 解决方案：把所有Json文件都放在StreamAssets文件夹下。
+
+**安卓打包问题：**
+
+1 安装apk后，一直黑屏，用adb logcat查看日志，发现是读取json文件失败，不能识别File操作
+
+	if (!File.Exists(filePath))
+    {
+        Debug.Log("文件读取失败，filePath:" + filePath);
+        return null;
+    }
+    StreamReader sr = new StreamReader(filePath);
+    string content = sr.ReadToEnd();
+    levelInfo = JsonMapper.ToObject<LevelInfo>(content);
+    sr.Close();
+
+解决方案：改用WWW读取
+
+	LevelInfo levelInfo = new LevelInfo();
+    string filePath = Application.streamingAssetsPath + "/Json/Level/" + fileName;
+    WWW wWW = new WWW(filePath);
+    if (wWW.error != null)
+    {
+        Debug.Log("文件读取失败，filePath:" + filePath);
+        return null;
+    }
+    while (true)
+    {
+		if (wWW.isDone)
+		{
+			levelInfo = JsonMapper.ToObject<LevelInfo>(wWW.text);
+			break;
+		}
+    }
+
+2 UI穿透问题。PC上可以，Android上就失效了，网上查到下面的方法但是不起效果：
+
+	//if (EventSystem.current.IsPointerOverGameObject())	// PC上可以
+    //if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) // Android上失效
+    {
+        Debug.Log("ispointover");
+        return;
+    }
+    
+解决方案：重写IsPointerOverGameObject
+
+	private bool IsPointerOverGameObject(Vector2 screenPosition)
+    {
+		// 实例化点击事件
+        PointerEventData eventDataCurrentPosition = new PointerEventData(UnityEngine.EventSystems.EventSystem.current);
+		// 将点击坐标赋值给事件
+        eventDataCurrentPosition.position = screenPosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+		// 进行射线检测
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+	
+	
+	private void OnMouseDown()
+    {       
+		// 在此调用，防止UI穿透
+        if (IsPointerOverGameObject(Input.mousePosition))      
+        {
+            //Debug.Log("ispointover");
+            return;
+        }
+        m_gameController.HandleGrid(this);     
+    }

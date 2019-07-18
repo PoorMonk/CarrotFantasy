@@ -100,7 +100,7 @@ MonoBehaviour:
   targetTrans: {fileID: 0}
   towerID: 3
   towerLevel: 1
-  moveSpeed: 3
+  moveSpeed: 4
   attackValue: 50
 --- !u!212 &212953534267723518
 SpriteRenderer:

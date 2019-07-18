@@ -30,7 +30,7 @@ public class NormalGameOptionSceneState : BaseSceneState {
         }
         else
         {
-            Debug.Log("Enter....");
+            //Debug.Log("Enter....");
             SceneManager.LoadScene(3);
         }
         gameNormalOptionPanel.IsInBigLevelPanel = true;

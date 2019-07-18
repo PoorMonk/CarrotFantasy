@@ -41,6 +41,7 @@ public class TopPage : MonoBehaviour {
         //Debug.Log("Top Enable");
         UpdateCoinText();
         m_totalRound.text = m_normalModelPanel.totalRound.ToString();
+        //Debug.Log("m_totalRound.text:" + m_totalRound.text);
         m_pauseImg.sprite = pauseSps[0];
         m_gameSpeedImg.sprite = gameSpeedSps[0];
         m_isPause = false;
@@ -53,7 +54,10 @@ public class TopPage : MonoBehaviour {
     {
         //Debug.Log(m_coinTxt); 
         //Debug.Log("coin:" + GameController.Instance);
-        m_coinTxt.text = GameController.Instance.coin.ToString();
+        if (GameController.Instance != null)
+        {
+            m_coinTxt.text = GameController.Instance.coin.ToString();
+        }
     }
 
     public void UpdateRoundText()
@@ -77,12 +81,9 @@ public class TopPage : MonoBehaviour {
         }
     }
 
-    public void PauseGame()
+    public void UpdateStatus()
     {
-        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
-        m_isPause = !m_isPause;
-        GameController.Instance.isPause = m_isPause;
-        if (m_isPause)
+        if (GameController.Instance.isPause)
         {
             m_pauseImg.sprite = pauseSps[1];
             m_pauseEmp.SetActive(true);
@@ -93,7 +94,19 @@ public class TopPage : MonoBehaviour {
             m_pauseImg.sprite = pauseSps[0];
             m_pauseEmp.SetActive(false);
             m_playingGo.SetActive(true);
+            if (m_isPause == true)
+            {
+                m_isPause = false;
+            }
         }
+    }
+
+    public void PauseGame()
+    {
+        GameManager.Instance.m_audioSourceManager.PlayButtonAudioClip();
+        m_isPause = !m_isPause;
+        GameController.Instance.isPause = m_isPause;
+        UpdateStatus();
     }
 
     public void ShowMenu()

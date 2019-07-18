@@ -73,7 +73,8 @@ public class NormalModelPanel : BasePanel {
         }
         base.EnterPanel();
         totalRound = m_gameController.currentStage.m_totalRound;
-        m_topPageGo.SetActive(true);
+        //Debug.Log("totalRound: " + totalRound);
+        m_topPageGo.SetActive(true); 
     }
 
     public override void UpdatePanel()

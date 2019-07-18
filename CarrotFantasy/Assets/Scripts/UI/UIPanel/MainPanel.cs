@@ -51,7 +51,10 @@ public class MainPanel : BasePanel {
 
     public void OnCloseBtnClicked()
     {
+        //Debug.Log("OnCloseBtnClicked");
+#if !UNITY_ANDROID
         GameManager.Instance.m_playerManager.SavaData();
+#endif
         Application.Quit();
     }
 
